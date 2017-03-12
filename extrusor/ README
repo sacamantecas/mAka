@@ -1,6 +1,0 @@
-Colección de piezas para fabricar el extrusor de mAka.
-Los ficheros "v *.stl" son versiones para ver
-Los "f *.stl" son para fabricar, con el afeitado ya preparado y los errores corregidos
-
-El extrusor está preparado para bascular un poco sobre su eje derecho, levantando un poco el lado izquierdo que debería ir sujeto con un muelle. El objetivo era tener unos contactos que se abrieran si el cuerpo se levanta lo más mínimo, para detectar una presión excesiva del filamento. Podría haber conseguido que por software se pudiera ajustar el feed rate para evitar que el tornillo de arrastre del filamento pudiera morder éste.
-En algunas pruebas logré que funcionase, pero un ajuste de la tensión del muelle que a una velocidad funcionaba, con otra no. Cada cambio de filamento habría supuesto tener que hacer muchas pruebas y al final me di cuenta de que era tan incómodo hacer funcionar el sistema que no resultaba útil, y lo descarté. Por eso ya no está el sistema de ajuste de los contactos, y la capacidad de bascular se elimina atornillando con normalidad el lado izquierdo, sin muelle.

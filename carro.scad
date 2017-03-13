@@ -8,8 +8,8 @@
 fabricar = 0 ; // algunas partes se fabrican separadas
 hacer_ventilador = 0 ;
 hacer_carro = 0 ;
-hacer_handler = 1 ;
-hacer_ventila_fusor = 0 ;
+hacer_handler = 0 ;
+hacer_ventila_fusor = 1 ;
 
 hacer_portataladro = 0 ; // incompatible con el resto
 	coger_volcan_hecho = 0 ;
@@ -1071,7 +1071,9 @@ module ventila_fusor() {
 						union() {
 							difference() {
 								hueco_tuerca();
-								translate([-1,-1,0]) hueco_tuerca([-mp,-mp,gapplasop]);
+								if (fabricar)
+									translate([-1,-1,0]) 
+										hueco_tuerca([-mp,-mp,gapplasop]);
 							}
 						translate(-[ventilador_fusor_entre_tornillos/2, ventilador_fusor_entre_tornillos/2, -(ventilador_fusor_tamanio[0]+sf_tornillo_dz-mp)/2]) 
 							cilindro(d=agj_M3_h, h=sf_tornillo_dz+mp);								

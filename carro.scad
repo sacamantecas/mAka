@@ -6,8 +6,8 @@
 //
 
 fabricar = 0 ; // algunas partes se fabrican separadas
-hacer_ventilador = 0 ;
-hacer_carro = 1 ;
+hacer_ventilador = 1 ;
+hacer_carro = 0 ;
 hacer_handler = 0 ;
 hacer_ventila_fusor = 0 ;
 
@@ -18,10 +18,10 @@ hacer_suplemento_portalapiz = 0 ;
 hacer_anclaje = 0 ;	// anclaje del extrusor (reside en extrusor.scad)
 
 
-completo=0 ; // para deshabilitar algunas cosas en depuraciÛn
-	hacer_guias = 0 ; // guÌas visuales para ayudar al diseÒo
+completo=0 ; // para deshabilitar algunas cosas en depuraci√≥n
+	hacer_guias = 0 ; // gu√≠as visuales para ayudar al dise√±o
 	hacer_bridas = 1 ;
-	hacer_topes_rh = 1 ; // resaltes para fijar la posiciÛn de los rodamientos lineales
+	hacer_topes_rh = 1 ; // resaltes para fijar la posici√≥n de los rodamientos lineales
 	hacer_soportes_complejos = fabricar ;
 	
 afeitado=0.25 * fabricar;
@@ -34,15 +34,15 @@ use <utilidades.scad>
 module fantasma(rgb=[.8,.8,.8]) {color(rgb+[0,0,0,.3]) children();}
 
 
-// coger variables de propÛsito general en el mÛdulo de utilidades
+// coger variables de prop√≥sito general en el m√≥dulo de utilidades
 voladizo=utilidades($angulo_voladizo);
 gapplasop=utilidades($gap_v_soporte);
 sephsop=utilidades($gap_h_soporte);
 groplasop=utilidades($gro_pla_sop);
 redondeo=utilidades($redondeo);
-// el mÛdulo de utilidades usar· este espesor para los soportes (si no, aplica un defecto)
+// el m√≥dulo de utilidades usar√° este espesor para los soportes (si no, aplica un defecto)
 churrito_nominal = .5 ; 
-$espesor=correccion(churrito_nominal  +  .09) ; // esto es para c·lculos de los soportes, y es un valor experimental para que las paredes de un hilo queden bien
+$espesor=correccion(churrito_nominal  +  .09) ; // esto es para c√°lculos de los soportes, y es un valor experimental para que las paredes de un hilo queden bien
 
 /*
                                                                           
@@ -55,7 +55,7 @@ $espesor=correccion(churrito_nominal  +  .09) ; // esto es para c·lculos de los 
   ##   ##  ### ##    ##     ####  ####      ####   ### ##   ####          
                                                                         */
 
-// par·metros del material:
+// par√°metros del material:
 vh_diametro = 10 ;
 rh_largo = 29 ;
 rh_diametro = 19 ;
@@ -71,8 +71,8 @@ n17_chaflan = ((n17_lado/(2*cos(45))-n17_diagonal/2)/cos(45));
 n17_tornillo_desplazato = 15.5 ;
 n17_tornillo_diametro = 3 ;
 n17_tornillo_cabeza = 6 ;
-agj_rosca_M3 = 2.5 ; // guÌa para hacer una rosca M3
-agj_rosca_M3_h = correccion(agj_rosca_M3 + .2) ; // guÌa para hacer una rosca M3
+agj_rosca_M3 = 2.5 ; // gu√≠a para hacer una rosca M3
+agj_rosca_M3_h = correccion(agj_rosca_M3 + .2) ; // gu√≠a para hacer una rosca M3
 agj_M3_h = correccion(3 + .8) ; 
 agj_M4_h = correccion(4 + .5) ; 
 arandela_M3_d = 6 ;
@@ -97,7 +97,7 @@ angulo_motor = 10 ;
 vh_distancia=vh_hueco + vh_diametro;
 rh_hueco = vh_distancia - rh_diametro;
 
-posicion_motor = [43,16,21.5] - [0,0,50] ; // 50 es el vh_z en el modulo X.scad, que aquÌ es 0
+posicion_motor = [43,16,21.5] - [0,0,50] ; // 50 es el vh_z en el modulo X.scad, que aqu√≠ es 0
 diametro_polea_con_correa = 14 ;
 posicion_actual_polea = 12.5 ;
 casquillo_correa_dx = 23 ;
@@ -106,11 +106,11 @@ casquillo_correa_plataforma_radio = 11.9 - casquillo_correa_diametro/2 ;
 casquillo_correa_plataforma_ancho = 6.75 ;
 anclajes_extrusor_dx = 54 ;
 //borrar // contactos para el detector de sobrealimentacion
-//borrar cds_contacto_x = -(anclajes_extrusor_dx/2 + 4) ; // 4mm m·s all· del agujero de anclaje y a 4mm del borde izquierdo
+//borrar cds_contacto_x = -(anclajes_extrusor_dx/2 + 4) ; // 4mm m√°s all√° del agujero de anclaje y a 4mm del borde izquierdo
 //borrar cds_contacto_y = 10.25 ; // a mitad del cuerno izquierdo del extrusor
 
 
-// zÛcalo del fusor
+// z√≥calo del fusor
 zf_largo = 71 ;
 zf_ancho = 28 ;
 zf_redondeo = 6.5 ;
@@ -164,7 +164,7 @@ pp_dy=vh_distancia + rh_diametro;
 pp_dz=3 ;
 pp_x = carro_x ;
 pp_y = 0 ;
-pp_z = corte_a_capa(rh_diametro / 2 + 6.5) ; // el corte a capa me facilita mucho las cosas m·s adelante (7 mm sobre el rodamiento maximiza el espacio: aprovechar los 5mm de hueco para los acoplamientos del motor en X, y bajar la cama 8mm)
+pp_z = corte_a_capa(rh_diametro / 2 + 6.5) ; // el corte a capa me facilita mucho las cosas m√°s adelante (7 mm sobre el rodamiento maximiza el espacio: aprovechar los 5mm de hueco para los acoplamientos del motor en X, y bajar la cama 8mm)
 pp_sobre = pp_z + pp_dz/2 ;
 pp_bajos = pp_z - pp_dz/2 ;
 pp_redondeo = 3 ;
@@ -189,30 +189,30 @@ correa_x = 0 *(carro_xi+rh_largo+h_dx/2 + .1 );
 correa_y = posicion_motor[1] + posicion_actual_polea * cos(angulo_motor) - diametro_polea_con_correa/2 * sin(angulo_motor);
 correa_z = posicion_motor[2] + posicion_actual_polea * sin(angulo_motor) + diametro_polea_con_correa/2 * cos(angulo_motor);
 
-// handler (pieza que conecta el carro con la correa a travÈs de una pieza de fijaciÛn)
+// handler (pieza que conecta el carro con la correa a trav√©s de una pieza de fijaci√≥n)
 h_x = correa_x;
 
 hf_tornillo_z = correa_z + 10 ;
 hf_margen_tornillo = 5 ;
 
-h_dz = pp_bajos-correa_z + .8 ; // alargo un poco m·s all· de correa_z para que abrace mejor el casquillo
+h_dz = pp_bajos-correa_z + .8 ; // alargo un poco m√°s all√° de correa_z para que abrace mejor el casquillo
 h_dy = (vh_diametro + rh_diametro) / 2 ;
-h_agujero_de_vh = vh_diametro + 2 ; // hueco (en di·metro) que se deja para la varilla horizontal (sin que roce)
+h_agujero_de_vh = vh_diametro + 2 ; // hueco (en di√°metro) que se deja para la varilla horizontal (sin que roce)
 h_reborde_sujeta_casquillo = 2 ; // estrechamiento (en diametro) a los lados del alojamiento del casquillo, para que no se mueva
 h_espesor_lengua_casquillo = $espesor*2 ; // el casquillo va arropado en el canto inferior por este grosor de filamento
 h_plus_alto_brida=.8 ; // el recorrido de la brida es largo y retorcido, y prefiero que sea holgado para no tener que hacer fuerza
 h_canal_brida=17 ; // diametro del hueco de la brida alrededor del casquillo
 h_canal_manguera = 8 ; // canal central de las costillas, donde va la manguera de cables
-h_bridas_manguera = [pp_bajos - 2 - zr_brida[0]/2, pp_bajos - h_dz + 11 + zr_brida[0]/2] ; // a cu·nto quedan los agujeros de las bridas de los topes del costillar (arriba y abajo)
+h_bridas_manguera = [pp_bajos - 2 - zr_brida[0]/2, pp_bajos - h_dz + 11 + zr_brida[0]/2] ; // a cu√°nto quedan los agujeros de las bridas de los topes del costillar (arriba y abajo)
 h_separa_tornillos = (pp_dx-rh_largo*2)/2;
 
 h_enganche_dy = h_dy;
-h_enganche_dx = correccion(zr_guia_accesorio_dx + zr_guia_accesorio_holgura); // es una profundidad: le aÒado la holgura
-h_enganche_dz = zr_guia_accesorio_dz; // no hace falta quitar holgura, porque el bloque en sÌ ya la tiene descontada
+h_enganche_dx = correccion(zr_guia_accesorio_dx + zr_guia_accesorio_holgura); // es una profundidad: le a√±ado la holgura
+h_enganche_dz = zr_guia_accesorio_dz; // no hace falta quitar holgura, porque el bloque en s√≠ ya la tiene descontada
 h_enganche_tope_dy = 1 ;
 
 
-// ventilador para el lado frÌo del fusor
+// ventilador para el lado fr√≠o del fusor
 sf_pared = 1 ;
 sf_tornillo_dz = 5 ;
 sf_circulo_dz = 6 ;
@@ -232,7 +232,7 @@ vc_x = pp_x ;
 vc_y =-(vh_distancia+rh_diametro)/2 - vc_dy/2;
 vc_z = sop_z_inferior + vc_dz/2;
 
-// ventilador de capa con su soplador (contin˙a)
+// ventilador de capa con su soplador (contin√∫a)
 sop_piel_xy = 1 ;
 sop_piel_z = 1.6 ;
 sop_altura_tobera = 5.4 ;
@@ -240,10 +240,10 @@ sop_ovalo_conexion_y = -8 ;
 sop_ovalo_conexion_yi = -vh_distancia/2 ;
 sop_alargamiento = 13 ;
 sop_ovalo_corte_tobera_dy = (sop_alargamiento + 3)*2 ;
-sop_plus_abertura = 2 ; // para abrir m·s por debajo
+sop_plus_abertura = 2 ; // para abrir m√°s por debajo
 sop_margen_dx_ovalo_corte_tobera = 4 ;
 sop_canto_frontal_tobera = 1 ;
-sop_aloja_rosca_abajo = 5 ; // arriba es m·s para dar una fuerza que abajo no es necesaria
+sop_aloja_rosca_abajo = 5 ; // arriba es m√°s para dar una fuerza que abajo no es necesaria
 sop_costilla_dz = 2 * $espesor ;
 sop_costilla_dy = 4 * $espesor ;
 sop_costilla_y = vc_y+vc_dy/2+sop_aloja_rosca_abajo + sop_costilla_dy/2 ;
@@ -252,8 +252,8 @@ sop_costilla_y = vc_y+vc_dy/2+sop_aloja_rosca_abajo + sop_costilla_dy/2 ;
 vcs_margen_vh = 1 ;
 vcs_dy_min = sqrt(pow(vc_z+vc_dz/2,2)+pow(vc_y+vc_dy/2+vh_distancia/2,2))-vh_diametro/2-vcs_margen_vh ; 
 vcs_enganche_dy = rh_diametro;
-vcs_enganche_dx = correccion(zr_guia_accesorio_dx + zr_guia_accesorio_holgura); // es una profundidad: le aÒado la holgura
-vcs_enganche_dz = zr_guia_accesorio_dz; // no hace falta quitar holgura, porque el bloque en sÌ ya la tiene descontada
+vcs_enganche_dx = correccion(zr_guia_accesorio_dx + zr_guia_accesorio_holgura); // es una profundidad: le a√±ado la holgura
+vcs_enganche_dz = zr_guia_accesorio_dz; // no hace falta quitar holgura, porque el bloque en s√≠ ya la tiene descontada
 vcx_enganche_tope_dy = 1 ;
 
 
@@ -303,12 +303,13 @@ if (hacer_ventilador) {
 		translate(t) 
 			rotate(r) 
 				ventilador_capa();
-	// mini-apoyo puesto a ojo para un arco de filamento que se echarÌa en vacÌo si no estuviera (misma posicion, fuera de afeitado)
-	translate(t) 
-		rotate(r) {
-			ancho=vcs_enganche_dx - gapplasop ;
-			cubo([ancho, vcs_enganche_dy/2-vcx_enganche_tope_dy-sephsop, $espesor], [vc_x-vc_dx/2+ancho/2,vc_y+vcx_enganche_tope_dy+sephsop+(vc_dy+vcs_enganche_dy/2-vcx_enganche_tope_dy)/2, correccion(pp_bajos-vcs_enganche_dz-vcs_enganche_dx/tan(voladizo)  -  1)]);
-		}
+	// mini-apoyo puesto a ojo para un arco de filamento que se echar√≠a en vac√≠o si no estuviera (misma posicion, fuera de afeitado)
+	if (fabricar)
+		translate(t) 
+			rotate(r) {
+				ancho=vcs_enganche_dx - gapplasop ;
+				cubo([ancho, vcs_enganche_dy/2-vcx_enganche_tope_dy-sephsop, $espesor], [vc_x-vc_dx/2+ancho/2,vc_y+vcx_enganche_tope_dy+sephsop+(vc_dy+vcs_enganche_dy/2-vcx_enganche_tope_dy)/2, correccion(pp_bajos-vcs_enganche_dz-vcs_enganche_dx/tan(voladizo)  -  1)]);
+			}
 }
 
 
@@ -323,7 +324,7 @@ if (hacer_carro)
 						render()
 							union() {
 								zocalos(poner=1);
-								// hacer dos guÌas para el soporte del ventilador
+								// hacer dos gu√≠as para el soporte del ventilador
 								difference() {
 									for (lado_y = [-1, 1] )
 										for (lado_x = [ -1, 1 ] ) 
@@ -338,12 +339,12 @@ if (hacer_carro)
 							}
 					}					
 
-					// abertura para conexiones y tornillos de fijaciÛn del handler
+					// abertura para conexiones y tornillos de fijaci√≥n del handler
 					cubo([pp_dx - 2*rh_largo, (vh_hueco - zf_ancho)/2, pp_dz+mp], [pp_x,(vh_hueco + zf_ancho)/4,pp_z], esquinas=15);
 					for ( lado = [-1, 1] )
 						cilindro(d=agj_M3_h, h=pp_dz+mp, t=[pp_x + lado * h_separa_tornillos/2,vh_distancia/2,pp_z]);
 					
-					// el agujero para el filamento va a ser cÛnico, los otros agujeros no (2 para pernos y 3 de centrado
+					// el agujero para el filamento va a ser c√≥nico, los otros agujeros no (2 para pernos y 3 de centrado
 					translate([0,0,pp_z]) cylinder(d1=zr_agujero_filamento_hasta, d2=zr_agujero_filamento_desde, h=pp_dz+mp, $fn=fn(zr_agujero_filamento_desde), center=true);
 					
 					// agujeros para atornillar el fusor y el lado izquierdo del extrusor
@@ -366,7 +367,7 @@ if (hacer_carro)
 							cylinder(d=agj_M3_h, h=pp_sobre + mp);
 						}
 					}
-					// parte de quitar dependiente de los zÛcalos
+					// parte de quitar dependiente de los z√≥calos
 					render()
 						zocalos(poner=0);
 				}
@@ -410,7 +411,7 @@ if (hacer_suplemento_portalapiz) {
 	translate(fabricar?[15,vh_hueco/2,mh_offset[2] - pl_grosor_placa_aluminio]:[0,0,0])
 		rotate(fabricar?[0,180,0]:[0,0,0])
 			portalapiz();
-	// guÌa		
+	// gu√≠a		
 	translate(fabricar?[90,-22,0]:mh_offset + [0,0,-pl_grosor_placa_aluminio-pl_dz-gl_separacion_elastica_dz-gl_dz])
 		rotate([0,0,0])
 			guialapiz();			
@@ -443,7 +444,7 @@ if (hacer_suplemento_portalapiz) {
 
 	
 module handler() {
-	// el handler tiene un alojamiento para el casquillo de uniÛn de la correa, que tiene rebordes a los lados encargados de garantizar que no haya backslash
+	// el handler tiene un alojamiento para el casquillo de uni√≥n de la correa, que tiene rebordes a los lados encargados de garantizar que no haya backslash
 	agujero_casquillo_d = correccion(casquillo_correa_diametro  +  .3);
 	agujero_casquillo_dx = correccion(casquillo_correa_dx  +  .4) ;
 	agujero_casquillo_reborde = correccion(agujero_casquillo_d  -  h_reborde_sujeta_casquillo) ;
@@ -455,8 +456,8 @@ module handler() {
 		
 	
 	module bloque() { 
-		a1 = (Y+h_dy/2-(correa_y+agujero_casquillo_d/2+h_espesor_lengua_casquillo)) ; // semieje menor del Ûvalo de redondeo del bloque
-		b1=(h_dz-pp_bajos) ; // excentricidad del Ûvalo anterior
+		a1 = (Y+h_dy/2-(correa_y+agujero_casquillo_d/2+h_espesor_lengua_casquillo)) ; // semieje menor del √≥valo de redondeo del bloque
+		b1=(h_dz-pp_bajos) ; // excentricidad del √≥valo anterior
 		
 		difference() {
 			cubo([pp_dx-2*rh_largo-zr_guia_accesorio_holgura, h_dy, h_dz-(zr_guia_accesorio_holgura+zr_guia_accesorio_holgura_plus)], t=[pp_x, Y, pp_bajos - (h_dz + zr_guia_accesorio_holgura+zr_guia_accesorio_holgura_plus)/2]);
@@ -515,9 +516,9 @@ module handler() {
 		else
 			cilindro(d=agujero_casquillo_d, h=agujero_casquillo_dx+1, t=[h_x,correa_y, correa_z], r=[0,90,0]);
 
-		// el agujero del casquillo estrecha muy ligeramente, y se nota si no lo arreglo con el siguiente cubo (para cuando una pieza coge m·s de medio casquillo)
+		// el agujero del casquillo estrecha muy ligeramente, y se nota si no lo arreglo con el siguiente cubo (para cuando una pieza coge m√°s de medio casquillo)
 		*cubo([casquillo_correa_dx, agujero_casquillo_d, agujero_casquillo_d], t=[h_x,correa_y, correa_z-agujero_casquillo_d/2]);
-		// pieza de los tornillos (no hace falta con el diseÒo actual)
+		// pieza de los tornillos (no hace falta con el dise√±o actual)
 		*translate([correa_x,correa_y, correa_z])
 			rotate([0,90,0]) 
 				cubo([casquillo_correa_plataforma_radio, casquillo_correa_plataforma_ancho+hf_holgura, h_dx+mp], t=[casquillo_correa_plataforma_radio/2,0,0], r=[0,0,angulo_motor]);
@@ -533,7 +534,7 @@ module handler() {
 			cilindro(d=h_agujero_de_vh, h=mucho, t=[h_x,Yv,0], r=[0,90,0], s=[excentricidad,1,1]);
 			cubo([mucho,h_agujero_de_vh+mp,pp_bajos], [h_x, Yv, (pp_bajos+mp)/2]);
 		}
-		// conexiÛn en voladizo entre el agujero para la varilla y lo que envuelve el casquillo
+		// conexi√≥n en voladizo entre el agujero para la varilla y lo que envuelve el casquillo
 		bvh = excentricidad * (h_agujero_de_vh/2) ; 
 		dY = sqrt(1/(pow(bvh*tan(voladizo)/pow(h_agujero_de_vh/2,2),2)+1/pow(h_agujero_de_vh/2,2))) ;
 
@@ -548,7 +549,7 @@ module handler() {
 			cilindro(d=agujero_casquillo_d+2*h_espesor_lengua_casquillo, h=mucho, t=[h_x,correa_y, correa_z], r=[0,90,0], s=[b/a,1,1]);
 		}
 						
-		// recorte interior para que no tropiece con el fusor (las dimensiones no importan mucho, la colocaciÛn si
+		// recorte interior para que no tropiece con el fusor (las dimensiones no importan mucho, la colocaci√≥n si
 		cubo([mucho, h_dy, h_dz], t=[h_x,correa_y-h_dy/2-agujero_casquillo_d/2 - h_espesor_lengua_casquillo,-h_dz/2]);
 		
 		casquillo(1);		
@@ -575,7 +576,7 @@ module handler() {
 						cilindro(d=h_canal_brida, h=zr_brida[0], rr=[0,90,0]);
 						cilindro(d=h_canal_brida-zr_brida[1]*2*h_plus_alto_brida, h=zr_brida[0]+mp, rr=[0,90,0]);
 					}
-			// agujeros pasantes y alojamiento para las tuercas de fijaciÛn (van sobre la varilla horizontal)
+			// agujeros pasantes y alojamiento para las tuercas de fijaci√≥n (van sobre la varilla horizontal)
 			for ( lado = [-1, 1] ) {
 				mucho=rh_diametro ;
 				cilindro(d=agj_M3_h, h=mucho, t=[pp_x+lado*h_separa_tornillos/2, Yv, pp_bajos]);
@@ -602,19 +603,19 @@ module handler() {
 module zocalos(poner=0) {
 	rh_radio_corregido = correccion(rh_diametro  +  .3) / 2;
 
-	// Ûvalo de la brida
+	// √≥valo de la brida
 	dih = rh_radio_corregido * 2; // diametro interior horizontal
 	dev = correccion(pp_sobre  +  .2) * 2; // diametro exterior vertical; corrijo en .2 el radio para que el hueco superior quede de 1mm
 	div = dev - 2*zr_brida[1];
 	deh = dih + 2*zr_brida[1];
 
-	// trunque del zÛcalo para evitar el filo
-	// el trunque para afinar se hace desde abajo, asÌ que hay que redondear al alza (con 10% de redondeo para no truncar por centÈsimas)
+	// trunque del z√≥calo para evitar el filo
+	// el trunque para afinar se hace desde abajo, as√≠ que hay que redondear al alza (con 10% de redondeo para no truncar por cent√©simas)
 	tz_dx=$espesor * 2 ; 
 	tz_dz = corte_a_capa($alto_de_capa*.9 + rh_radio_corregido*sin(acos(1-tz_dx/rh_radio_corregido)) );
 	// trunques de la brida para evitar el filo 
-	// el c·lculo para saber dÛnde el Ûvalo de la brida est· a tz_dx del rodamiento con el Ûvalo con un es una ecuaciÛn de 2∫ grado
-	// con esa ecuaciÛn calculo la coordenada X, para lo que me interesa la soluciÛn de "menos raiz de". A partir de ahÌ saco la Y
+	// el c√°lculo para saber d√≥nde el √≥valo de la brida est√° a tz_dx del rodamiento con el √≥valo con un es una ecuaci√≥n de 2¬∫ grado
+	// con esa ecuaci√≥n calculo la coordenada X, para lo que me interesa la soluci√≥n de "menos raiz de". A partir de ah√≠ saco la Y
 	// A=((pow(rh_radio_corregido,2)/pow(div/2,2))-1);
 	// B=(-2*tz_dx);
 	// C=(-pow(tz_dx,2)-pow(rh_radio_corregido,4)/pow(div/2,2)+pow(rh_radio_corregido,2));
@@ -637,7 +638,7 @@ module zocalos(poner=0) {
 					}
 						
 				else if (completo + hacer_bridas) 
-					translate([0*14.3,0,0]) { // este translate es para que el hueco se vea en el borde del zÛcalo, para depuraciÛn
+					translate([0*14.3,0,0]) { // este translate es para que el hueco se vea en el borde del z√≥calo, para depuraci√≥n
 						rotate([0,0,0]) 
 							difference() {
 								union() { // cilindro exterior + recorte para operar con la brida + otro recorte para la cabeza de la brida
@@ -812,7 +813,7 @@ module ventilador_capa() {
 	module bloque_apoyo_exterior(s=[1,1,1], sp=0) {
 		dX = vc_dx-2*(sop_piel_xy + gapplasop);
 		dYi = sop_aloja_rosca_abajo;
-		// tengo interÈs en dejar menos de 45∫ de voladizo para proteger el hueco de la rosca de embutir
+		// tengo inter√©s en dejar menos de 45¬∫ de voladizo para proteger el hueco de la rosca de embutir
 		dZ = sin(90-min(40,voladizo)) * vc_diametro ;
 		dZs = dZ/2 ;
 		dZi = dZ - dZs - sephsop ; 
@@ -822,8 +823,8 @@ module ventilador_capa() {
 		altoo = correccion(vc_dz-sop_altura_tobera+sop_piel_z  +  separa_un_poco);
 		anchoo = correccion(sop_ovalo_conexion_y-sop_ovalo_conexion_yi+sop_piel_xy  +  separa_un_poco);
 
-		dYsr = sop_ovalo_conexion_yi-vc_y-vc_dy/2 -sop_piel_xy - separa_un_poco; // dY superior reducido (a nivel del m·ximo corte del Ûvalo)
-		dYs = correccion(dYsr  +  5) ;  // no me apetece calcular la Y del Ûvalo en la posiciÛn correspondiente, y con un chorrito que luego se recorta ya va bien
+		dYsr = sop_ovalo_conexion_yi-vc_y-vc_dy/2 -sop_piel_xy - separa_un_poco; // dY superior reducido (a nivel del m√°ximo corte del √≥valo)
+		dYs = correccion(dYsr  +  5) ;  // no me apetece calcular la Y del √≥valo en la posici√≥n correspondiente, y con un chorrito que luego se recorta ya va bien
 
 		intersection() {
 			union() {
@@ -839,7 +840,7 @@ module ventilador_capa() {
 								cubo([dX, dYs, dZs], s=s);
 						scale(1/s) cilindro(d=altoo*2, h=vc_dx+mp, t=[vc_x, sop_ovalo_conexion_y, vc_z+vc_dz/2], r=[0,90,0], s=[1,anchoo/altoo,1]);
 					}
-				// no es tacaÒerÌa: es que no hay apoyo para el soporte en este lado, asÌ que hay que recortar Y
+				// no es taca√±er√≠a: es que no hay apoyo para el soporte en este lado, as√≠ que hay que recortar Y
 				translate([vc_x, vc_y+(vc_dy+dYi)/2, vc_z-(dZ-dZi)/2])
 					if (sp) mirror([0,0,1]) rotate([90,0,90]) soporte_paralelo([dYi, dZi, dX], sombrero=0, hueco=1.5); else cubo([dX, dYi, dZi], s=s);
 			}
@@ -860,7 +861,7 @@ module ventilador_capa() {
 			// la holgura entre la pieza y el carro es doble tiene un plus porque lo necesito
 			alto = pp_bajos-(vc_z+vc_dz/2) - (zr_guia_accesorio_holgura + zr_guia_accesorio_holgura_plus) ;
 			cubo([vc_dx, vcs_enganche_dy, alto+mp], t=[vc_x, vc_y+vc_dy/2+vcs_enganche_dy/2, vc_z+(vc_dz+alto-mp-(zr_guia_accesorio_holgura + zr_guia_accesorio_holgura_plus))/2]);
-			// esto es un saliente por el lado del ventilador para engrosar la pieza a la altura de la varilla, para darle rigidez (sale o no, dependiendo de los par·metros)
+			// esto es un saliente por el lado del ventilador para engrosar la pieza a la altura de la varilla, para darle rigidez (sale o no, dependiendo de los par√°metros)
 			difference() { 
 				cilindro(d=vh_diametro+(vcs_dy_min+zr_guia_accesorio_holgura)*2, h=vc_dx, r=[0,90,0], t=[vc_x, -vh_distancia/2, 0]);
 				cubo(vc_dx+mp, [vc_x,-vh_distancia/2,vc_z+vc_dz/2-vc_dx/2]);
@@ -903,7 +904,7 @@ module ventilador_capa() {
 								rosca_embutir(lado_z > 0 ? correccion( 4.5 ) : (sop_aloja_rosca_abajo+mp));
 
 
-		// quitar un filete para evitar lÌos con el embudo de quitar
+		// quitar un filete para evitar l√≠os con el embudo de quitar
 		translate([vc_x, vc_y+vc_dy/2, vc_z])
 			intersection() { 
 				cilindro(d=vc_diametro, h=mp, r=[90,0,0]);
@@ -922,7 +923,7 @@ module ventilador_capa() {
 			cubo(mucho, [(mucho+or)/2, 0,sop_z_inferior + sop_altura_tobera/2]);
 			cubo(mucho, [-(mucho+or)/2, 0,sop_z_inferior + sop_altura_tobera/2]);
 		}
-		// marcar unas lÌneas en lo que queda arriba, para optimizar el recorrido del fusor
+		// marcar unas l√≠neas en lo que queda arriba, para optimizar el recorrido del fusor
 		if (completo + hacer_soportes_complejos) { 
 			aleja_de_la_rampa = .2 ;
 			translate([0,-aleja_de_la_rampa,0])
@@ -1094,7 +1095,7 @@ module ventila_fusor() {
 
 module trama_anclaje () {
 	profundidad = 2 * $alto_de_capa ; 
-	grueso = 2 * profundidad ; // me resulta m·s cÛmodo doblar el grosor
+	grueso = 2 * profundidad ; // me resulta m√°s c√≥modo doblar el grosor
 	penetra = .5 ;
 	separa_ranuras = 2 ;
 	ancho_ranuras = 2 ;
@@ -1132,9 +1133,9 @@ module trama_anclaje () {
 caras_volcan = 120 ; // 120 queda bien
 ancho_canto_crater = 4 ;
 
-patin_alto = 1 ; // el patÌn es un realce que hace contacto con la varilla
+patin_alto = 1 ; // el pat√≠n es un realce que hace contacto con la varilla
 patin_ancho = 3 ;
-fijacion_dx = 6 ; // la fijaciÛn es una pieza que se atornilla a la izquierda e impide que el suplemento se levante (lo fija a la parte inferior de la varilla)
+fijacion_dx = 6 ; // la fijaci√≥n es una pieza que se atornilla a la izquierda e impide que el suplemento se levante (lo fija a la parte inferior de la varilla)
 fijacion_angulo = voladizo ;
 fijacion_tornillo_holgura = 1 ;
 fijacion_tornillo_z = 0 ;
@@ -1154,7 +1155,7 @@ motor_desde_suplemento_x = bloque_xi - (/*X.cuerpoi_dx*/47 -/*X.vv_sobresale_cue
 mh_D = 48 ;
 mh_d = 22 ;
 mh_excentricidad_tornillo = vh_hueco/2 -2 ;
-mh_altura_tuerca = 16 ; // es funciÛn de mh_excentricidad_tornillo, agj_M3_d_h y del ·ngulo del cono de la multiherramienta... se puede calcular pero no compensa
+mh_altura_tuerca = 16 ; // es funci√≥n de mh_excentricidad_tornillo, agj_M3_d_h y del √°ngulo del cono de la multiherramienta... se puede calcular pero no compensa
 
 // parametros del portalapiz
 pl_dx = 40 ; 
@@ -1302,7 +1303,7 @@ module suplemento() {
 							hueco_varillero(vh_diametro + patin_alto*2, lado);
 							cube([bloque_dx+mp, patin_ancho, vh_diametro + patin_alto*2], center=true);
 							cube([bloque_dx+mp, vh_diametro + patin_alto*2, patin_ancho], center=true);
-							// soporte del pat›n horizontal
+							// soporte del pat√ùn horizontal
 							translate([0,-lado * (patin_alto + vh_diametro/2*cos(asin(patin_ancho/vh_diametro))),vh_diametro/4])
 								cube([bloque_dx+mp, patin_alto*2, vh_diametro/2], center=true);
 						}
@@ -1312,9 +1313,9 @@ module suplemento() {
 			// alojamiento para motor
 			motor(motor_holgura);		
 
-			// alojamiento para la estructura de fijaciÛn
+			// alojamiento para la estructura de fijaci√≥n
 			translate([bloque_xi + mh_offset[0]+fijacion_dx + .2, 0, 0]) {
-				// tornillo de fijaciÛn
+				// tornillo de fijaci√≥n
 				translate([-mp/2,0,0])		
 					rotate([0,90,0])		
 						cylinder(d = agj_M3_h, h=fijacion_tornillo_entra+mp);
@@ -1334,18 +1335,18 @@ module suplemento() {
 					linear_extrude(fijacion_dx + .2 + mp) {
 						silueta_fijacion([.15, .3]);
 						translate([mh_offset[2]-mp, -vh_distancia/2]) {
-							// esto de la H es para recortar a la altura en la que empieza el soporte del patÌn horizontal
+							// esto de la H es para recortar a la altura en la que empieza el soporte del pat√≠n horizontal
 							H = vh_diametro*cos(asin(patin_ancho/vh_diametro));
 							square([correccion(abs(mh_offset[2])+H*tan(acos(H/(vh_diametro+patin_alto*2)))/2 +mp), vh_distancia]);
 						}
 					}
 			}
 			
-			// multiherramienta con su tornillerÌa
+			// multiherramienta con su torniller√≠a
 			translate(mh_offset) {	
 				mh_ventilacion_z = [33.2, 38.0] ;
 				mh_ventilacion_x = [-5.6, 5.6] ; // desplazamiento en X a partir del eje de la multiherramienta
-				mh_ventilacion_dx = [14.6, 16.1] ; // las de abajo son m·s cortas
+				mh_ventilacion_dx = [14.6, 16.1] ; // las de abajo son m√°s cortas
 				mh_ventilacion_dz = 3 ;
 				gap_horizontal = 2.4 ;
 				
@@ -1452,7 +1453,7 @@ module fijacion() {
 											square([rh_diametro, patin_ancho], center=true);
 											square([patin_ancho, rh_diametro], center=true);
 										}										
-										square(correccion(vh_diametro  +  .3), center=true); // cortar los patines en redondo es bonito en el dibujo, pero malo en la pr·ctica
+										square(correccion(vh_diametro  +  .3), center=true); // cortar los patines en redondo es bonito en el dibujo, pero malo en la pr√°ctica
 										translate([(rh_diametro+patin_ancho)/2, 0])
 											square(rh_diametro, center=true);
 									}
@@ -1467,7 +1468,7 @@ module fijacion() {
 	}
 }
 
-module silueta_fijacion(plus=[0,0]) { // el plus es para agrandar la parte de arriba cuando la silueta se usa para crear un hueco en el portaherramienta (la parte de abajo no varÌa)
+module silueta_fijacion(plus=[0,0]) { // el plus es para agrandar la parte de arriba cuando la silueta se usa para crear un hueco en el portaherramienta (la parte de abajo no var√≠a)
 	superior_dy = vh_distancia + plus[1] * 2;
 	superior_dz = vh_diametro + 6 + plus[0];
 	difference() {
@@ -1669,4 +1670,3 @@ module pastilla_empuje(suplemento=false) {
 			cylinder(d=muelle_d, muelle_dz+mp);
 	}
 }
-

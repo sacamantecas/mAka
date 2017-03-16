@@ -1,4 +1,10 @@
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// piezas relacionadas con la sonda de Z para el autolevel
+// puedes seleccionar una de las 5 lineas siguientes anteponiendo un !
+// o seleccionar varias anteponiendo * en las que no quieras
+//
+//
   /* rotor (2 piezas) */ 						rotor();
   /* cuerpo */									cuerpo();
   /* lanza (son 3 piezas) */					afeita(afeitado) lanza();

@@ -1,6 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// todas las piezas se fabrican con capas de .2 !!
+// extrusor para mAka
+// todas las piezas se fabrican con capas de .2
 //
 
 hacer_cuerpo = 1 ;
@@ -26,13 +27,13 @@ hacer_soportes = fabricar ;
 use <utilidades.scad>
 use <MCAD/involute_gears.scad>
 
-ucm = .1 ; // un chorrito m·s para asegurar uniones. OjO, porque si es grande puede afectar negativamente
+ucm = .1 ; // un chorrito m√°s para asegurar uniones. OjO, porque si es grande puede afectar negativamente
 2_manifold = .001 ; // para evitar problemas de 2-manifold
-rebose=.15 ; // cu·nto rebosa el churrito
-precision = 2 ; // se usa para calcular el n∫ de facetas de los cilindros
+rebose=.15 ; // cu√°nto rebosa el churrito
+precision = 2 ; // se usa para calcular el n¬∫ de facetas de los cilindros
 groplasop = 1 ; // grosor de las plataformas de soporte
-gapplasop = .25 ; // separaciÛn entre las plataformas de soporte y lo soportado
-sephsop = .7 ; // separaciÛn horizontal de las plataformas de soporte
+gapplasop = .25 ; // separaci√≥n entre las plataformas de soporte y lo soportado
+sephsop = .7 ; // separaci√≥n horizontal de las plataformas de soporte
 
 refagj = [
 	[  0   ,  0   ],
@@ -60,29 +61,29 @@ function agj(radio, indice=0) =
 	: agj(radio, indice+1) ;
 	
 	
-function fn(r) = floor(( precision *r*3.14+3)/4)*4; // n∫ de facetas seg˙n el radio, ajustado a m˙ltiplo de 4
+function fn(r) = floor(( precision *r*3.14+3)/4)*4; // n¬∫ de facetas seg√∫n el radio, ajustado a m√∫ltiplo de 4
 
 
 an17 = 42.3 ; // ancho del NEMA1
-afm = 3.6/2 ; // agujero de fijaciÛn del motor
-asm = 1 ; // arandela de separaciÛn del motor
+afm = 3.6/2 ; // agujero de fijaci√≥n del motor
+asm = 1 ; // arandela de separaci√≥n del motor
 rasm = 8/2 ; // radio de la arandela de separacion del motor
-afme = 6.4/2 ; // apertura para la cabeza del tornillo de fijaciÛn del motor
-pafme = 1 ; // del agujero del tornillo penetraciÛn
+afme = 6.4/2 ; // apertura para la cabeza del tornillo de fijaci√≥n del motor
+pafme = 1 ; // del agujero del tornillo penetraci√≥n
 dam = 15.5 ; // distancia de los agujeros del motor a su eje
 hbm = 12 ; // hueco para la boina del motor
 
-m4ca_r = 3.6 ; // M4 (cabeza) cilÌndrica (con) arandela
-m4ca_h = 3.7 ; // M4 (cabeza) cilÌndrica (con) arandela
+m4ca_r = 3.6 ; // M4 (cabeza) cil√≠ndrica (con) arandela
+m4ca_h = 3.7 ; // M4 (cabeza) cil√≠ndrica (con) arandela
 
 de_hendiduras_a_tuerca = 26.6 ; // distancia de las hendiduras a la base de la tuerca
-grosor_engranajes = 15 ; // 14 es el m·ximo (y no sÈ si incluso excesivo)
+grosor_engranajes = 15 ; // 14 es el m√°ximo (y no s√© si incluso excesivo)
 separa_engranajes_del_cuerpo = 4 ;
 
 drg = 56.6 ; // diametro rueda grande
 hvrg = 1 ; // holgura vertical rueda grande
 
-dee = 35 ; // distancia entre ejes (forma parte del diseÒo de las ruedas)
+dee = 35 ; // distancia entre ejes (forma parte del dise√±o de las ruedas)
 defc = 54 ; // distancia entre las fijaciones del carro
 cue_alto = 50 ;
 cue_fondo = 28 ; // grosor del cuerpo
@@ -90,11 +91,11 @@ offset_eje = (7/2 + 3/2 - .2); // distancia del centro del agujero de filamento 
 
 // anclaje_dcha (y algo de izda)
 X_eje_balanceo = offset_eje + dee - 6 ;// si <33.3 entonces el hueco del tornillo de anclaje se conecta con el del eje de balanceo
-sobresale_cuerno_dcho = 4.5 ; // cu·nto sobresale el cuerno m·s all· del eje de balanceo (3mm + radio del eje)
-sobresale_cuerno_izq = 8 ; // cu·nto salen los cuernos izquierdos m·s all· de la fijaciÛn al carro
+sobresale_cuerno_dcho = 4.5 ; // cu√°nto sobresale el cuerno m√°s all√° del eje de balanceo (3mm + radio del eje)
+sobresale_cuerno_izq = 8 ; // cu√°nto salen los cuernos izquierdos m√°s all√° de la fijaci√≥n al carro
 
 // los anclajes van sobre una suela de zapatilla
-alto_zapatilla = 0 * .6 ; // base que sÛlo sirve para fijar los anclajes
+alto_zapatilla = 0 * .6 ; // base que s√≥lo sirve para fijar los anclajes
 holgura_zapatilla = .3 ;
 ejebalanceo = 3.6 ;
 adgl = 6.3 + alto_zapatilla + holgura_zapatilla ; // grosor lengua
@@ -102,12 +103,12 @@ plusoreja = .6 ;
 adrme = 15 ; // radio X de la elipse que envuelve al tornillo de amarre M4
 adabl = 16 ; // radio Y de la elipse, y ancho bloque lengua
 adhxl = .5 ; // holgura que deja la lengua del ancla con el cuerpo (en X)
-adhyl = .4 ; // holgura que deja la lengua del ancla con el cuerpo (en Y) (se aplica en el ancho de la lengua, porque al imprimir en horizontal es m·s preciso
+adhyl = .4 ; // holgura que deja la lengua del ancla con el cuerpo (en Y) (se aplica en el ancho de la lengua, porque al imprimir en horizontal es m√°s preciso
 adhxc = 1 ; // holgura entre el ancla y el final del cuerno, en X
 adlbl = X_eje_balanceo-defc/2 + sobresale_cuerno_dcho ; 
 adwse = 10 ; // ancho del soporte del eje
 adgo = 4 ; // grosor de las orejas donde va el eje de balanceo del extrusor (y las izquierdas)
-ancho_anclaje = cue_fondo+(adgo+rebose+.15)*2 ; // le doy algo m·s de holgura
+ancho_anclaje = cue_fondo+(adgo+rebose+.15)*2 ; // le doy algo m√°s de holgura
 
 
 // constantes para distinguir funciones
@@ -124,8 +125,8 @@ module cilindro(r, h) cylinder(r=r, h=h, center=true, $fn=fn(r));
 
 
 module cubor(v, esquinas=15, radio=1) {
-	// cubo redondeado, indicando la m·scara de esquinas (1=+X+Y; 2=+X-Y; 4=-X-Y; 8=-X+Y) y el radio de redondeo
-	// Z no lo considero, porque esto est· pensado para optimizar la impresiÛn en el plano XY al eliminar esquinas
+	// cubo redondeado, indicando la m√°scara de esquinas (1=+X+Y; 2=+X-Y; 4=-X-Y; 8=-X+Y) y el radio de redondeo
+	// Z no lo considero, porque esto est√° pensado para optimizar la impresi√≥n en el plano XY al eliminar esquinas
 	w=v[0]/2 - radio;
 	l=v[1]/2 - radio;	
 	hull() {
@@ -152,7 +153,7 @@ module agujero_holgado(r1, r2, h, hol) {
 	}
 }	
 
-module eje_balanceo(raio) { // el eje ya est· en el X del eje del motor (que ser· su posiciÛn final)
+module eje_balanceo(raio) { // el eje ya est√° en el X del eje del motor (que ser√° su posici√≥n final)
 	translate([X_eje_balanceo, 0, 0]) rotate([90,0,0]) cylinder(r=raio, h=50, center=true, $fn=fn(raio));
 }
 
@@ -165,7 +166,7 @@ module anclaje_dcha_lengua() {
 }
 
 module anclaje_dcha() {
-	sobresale = .8 ; // es lo que sobresale la cabeza del tornillo (es un ajuste de ˙ltima hora, consecuencia de dejar 1mm de holgura hasta el motor)
+	sobresale = .8 ; // es lo que sobresale la cabeza del tornillo (es un ajuste de √∫ltima hora, consecuencia de dejar 1mm de holgura hasta el motor)
 	zapatilla=alto_zapatilla+holgura_zapatilla;
 	escalaY = (adabl-adhyl*2)/adabl; // cada vez me van cabiendo menos chapuzas :(
 
@@ -196,8 +197,8 @@ module anclaje_dcha() {
 		hueco_cuerno(1);
 		hueco_cuerno(-1);
 		translate([0, 0, adgl-(m4ca_h-ucm)/2 + sobresale]) cilindro(agj(m4ca_r), m4ca_h+ucm);
-		cilindro(agj(4/2), 20); // agujero para el tornillo M4 (m·s vale que zozobre)
-		translate([-defc/2,0,ejebalanceo]) { // retrocedo defc/2 porque el anclaje va directamente en al agujero de fijaciÛn
+		cilindro(agj(4/2), 20); // agujero para el tornillo M4 (m√°s vale que zozobre)
+		translate([-defc/2,0,ejebalanceo]) { // retrocedo defc/2 porque el anclaje va directamente en al agujero de fijaci√≥n
 			// quiero holgado el agujero interior
 			scale([1,.5,1]) eje_balanceo(3.4/2); 
 			eje_balanceo(3.2/2); }
@@ -256,17 +257,17 @@ module engranaje_grande() {
 	radio_int_llanta = 23 - cono_llanta ;
 	base_tuerca_z = de_hendiduras_a_tuerca - cue_fondo/2 - grosor_engranajes/2 - separa_engranajes_del_cuerpo;
 	h_tuerca = max(5, grosor_engranajes/2-base_tuerca_z) ;	
-	alto_central_radios = grosor_engranajes; // hasta dÛnde llegan los radios en el eje
-	h_cono_adapta = radio_sup_hub-radio_inf_hub ; // 45∫	
+	alto_central_radios = grosor_engranajes; // hasta d√≥nde llegan los radios en el eje
+	h_cono_adapta = radio_sup_hub-radio_inf_hub ; // 45¬∫	
 	radio_esparrago=8.05 ;
-	interseccion_radios = radio_inf_hub-agj(radio_esparrago/2) ; // interpenetraciÛn Ûvalo radios
-	radio_final=56.626/2 ; // empÌrico, no sÈ cÛmo calcularlo a partir de los datos del engranaje :(
+	interseccion_radios = radio_inf_hub-agj(radio_esparrago/2) ; // interpenetraci√≥n √≥valo radios
+	radio_final=56.626/2 ; // emp√≠rico, no s√© c√≥mo calcularlo a partir de los datos del engranaje :(
 
-	// par·metros que hay que ajustar tanteando para que quede chulo
+	// par√°metros que hay que ajustar tanteando para que quede chulo
 	radios=3 ;
-	radio_ext_circulo = 0 ; // se corrige a un mÌnimo imprescindible
+	radio_ext_circulo = 0 ; // se corrige a un m√≠nimo imprescindible
 	grosor_radios=2 ; // grosor radios
-	ratio_ovalo_radios = 1.7 ; // ratio Ûvalo radios
+	ratio_ovalo_radios = 1.7 ; // ratio √≥valo radios
 	
 	
 	rcre=max(radio_ext_circulo, (radio_int_llanta-radio_inf_hub)/2+interseccion_radios+cono_llanta);
@@ -275,7 +276,7 @@ module engranaje_grande() {
 		// llanta dentada
 		difference() {
 			mi_engranaje(28);
-			translate([0,0,grosor_engranajes-.4]) // matar las 2 capas de arriba porque araÒan y van a juntarse con la rebaba del engranaje pequeÒo
+			translate([0,0,grosor_engranajes-.4]) // matar las 2 capas de arriba porque ara√±an y van a juntarse con la rebaba del engranaje peque√±o
 				difference(){			
 					cylinder(r=radio_final+ucm, h=grosor_engranajes, center=true, $fn=fn(radio_final));
 					translate([0,0,.4]) cylinder(r=radio_final-.3, h=grosor_engranajes+1, center=true, $fn=fn(radio_final));
@@ -317,7 +318,7 @@ module engranaje_grande() {
 								difference() {
 									scale([ratio_ovalo_radios,1,1]) 
 										cylinder(r=rcre, h=alto_central_radios, center=true, $fn=fn(rcre));
-									// el Ûvalo interior va escalado de forma que mantiene el grosor
+									// el √≥valo interior va escalado de forma que mantiene el grosor
 									scale([(ratio_ovalo_radios*rcre-grosor_radios)/(rcre-grosor_radios),1,1]) 
 										cylinder(r=rcre-grosor_radios, h=alto_central_radios+ucm+ucm, center=true, $fn=fn(rcre-grosor_radios));
 								}
@@ -325,7 +326,7 @@ module engranaje_grande() {
 						}
 			}
 			
-			// quitar los Ûvalos en el alojamiento de la tuerca
+			// quitar los √≥valos en el alojamiento de la tuerca
 			translate([0,0,base_tuerca_z+(h_tuerca+ucm)/2])
 				cylinder(r=agj(radio_tuerca), h=h_tuerca+ucm, center=true, $fn=6);
 				
@@ -341,8 +342,8 @@ module engranaje_grande() {
 
 module engranaje_peque(tornillo_fuera = 1) {
 	grueso_tuerca = 2.7 ;
-	ancho_tuerca=5.9 ; // ojo cuidado: la profundidad sale bien siendo de 6.2, y la anchura sale bien con 5.9; habrÌa que deformar
-	alto_tuerca=6.2 ; // por cuestiones de fabricaciÛn, hay que considerar un di·metro vertical mayor °!
+	ancho_tuerca=5.9 ; // ojo cuidado: la profundidad sale bien siendo de 6.2, y la anchura sale bien con 5.9; habr√≠a que deformar
+	alto_tuerca=6.2 ; // por cuestiones de fabricaci√≥n, hay que considerar un di√°metro vertical mayor ¬°!
 	radio_eje = 2.75 ; // ya corregido para imprimir
 	penetracion=.6 ; // es la medida del rebaje del eje
 	alto_cuello = 4.6 ;
@@ -354,8 +355,8 @@ module engranaje_peque(tornillo_fuera = 1) {
 			union() {
 				rotate(diente_con_tornillo) 
 					mirror([0,tornillo_fuera,0]) 
-						mi_engranaje(9, h=grosor_engranajes + 2*filete_cortesia); // reflejado para que encaje con el grande (no son simÈtricas)
-				// aÒadir un filete m·s, por lo que pueda descolgar al hacer el cuello
+						mi_engranaje(9, h=grosor_engranajes + 2*filete_cortesia); // reflejado para que encaje con el grande (no son sim√©tricas)
+				// a√±adir un filete m√°s, por lo que pueda descolgar al hacer el cuello
 				translate([0,0,alto_cuello/2+grosor_engranajes/2+filete_cortesia]) 
 					cylinder(r=18/2, h=alto_cuello, center=true, $fn=fn(12));
 			}
@@ -397,12 +398,12 @@ module silueta_XY_cuerpo(holgura=0) {
 				
 module cuerpo(elemento=cue_ancla) {
 	cue_w = 24 ;
-	cue_w_merma = .8 ; // un descuento en cue_w para darle respiraciÛn al motor
-	povi = 1.5 ; // proporcion del Ûvalo que forma la vertiente izquierda
-	puovi = .7 ; // proporciÛn de cue_w usada por el Ûvalo anterior
+	cue_w_merma = .8 ; // un descuento en cue_w para darle respiraci√≥n al motor
+	povi = 1.5 ; // proporcion del √≥valo que forma la vertiente izquierda
+	puovi = .7 ; // proporci√≥n de cue_w usada por el √≥valo anterior
 	htrh = 4.2 ; // hueco del tornillo ranurado con holgura
 	som_l = 4 ; // soporte del motor
-	ser_h=cue_alto-an17-1; // soporte del eje de rotaciÛn del cuerpo
+	ser_h=cue_alto-an17-1; // soporte del eje de rotaci√≥n del cuerpo
 	ser_l = 6 ; 
 	ser_wm = an17 ; // lado del motor
 	ser_wo = X_eje_balanceo - offset_eje - dee + an17/2 + cue_w_merma + sobresale_cuerno_dcho ;
@@ -410,14 +411,14 @@ module cuerpo(elemento=cue_ancla) {
 	rcs = 6 ; // redondeo entre el cuerpo y el soporte del eje y el motor
 	vnt_w = 9 ; // ancho de la ventana por donde asoma el filamento y entra el detector de movimiento
 	vnt_h = 12 ; // alto de esa misma ventana
-	vnt_b = 4 ; // base mÌnima bajo la ventana
+	vnt_b = 4 ; // base m√≠nima bajo la ventana
 	vnt_d = 4.5 ; // desplazamiento del lateral de la ventana respecto al eje del agujero del filamento
 	rehuefi = 2 ; // redondeo del hueco para ver el filamento
-	pizd_h = 4 ; // altura de la playa izquierda, donde va el muelle (hay algo mal, y sÛlo funciona para valores entre 2 y 5.8)
-	rcabtornillo = 7.4/2 ; // radio de la cabeza del tornillo de presiÛn de filamento
-	htornillo = cue_alto-4.5 ; // altura del tornillo de presiÛn
-	hcabtornillo = 3 ; // altura de la cabeza del tornillo de presiÛn de filamento
-	rtornillo = 2 ;  // radio del tornillo de presiÛn de filamento
+	pizd_h = 4 ; // altura de la playa izquierda, donde va el muelle (hay algo mal, y s√≥lo funciona para valores entre 2 y 5.8)
+	rcabtornillo = 7.4/2 ; // radio de la cabeza del tornillo de presi√≥n de filamento
+	htornillo = cue_alto-4.5 ; // altura del tornillo de presi√≥n
+	hcabtornillo = 3 ; // altura de la cabeza del tornillo de presi√≥n de filamento
+	rtornillo = 2 ;  // radio del tornillo de presi√≥n de filamento
 	h_sopo_rod_ext=10 - gapplasop ;
 	h_sopo_rod_int=10.5 - gapplasop ;
 	dx_al_borde_agujero_detector = 9 ;
@@ -426,7 +427,7 @@ module cuerpo(elemento=cue_ancla) {
 	holgura_ec = .2 ; // es para colocar la elipse que da forma al lado izquierdo del cuerpo
 
 	li_ancho=12.2 ;
-	li_alto=pizd_h - .3 ; // quiero que el sistema de presiÛn no apoye sobre el anclaje, sino que descargue Ìntergramente sobre el cuerpo
+	li_alto=pizd_h - .3 ; // quiero que el sistema de presi√≥n no apoye sobre el anclaje, sino que descargue √≠ntergramente sobre el cuerpo
 	li_largo=sobresale_cuerno_izq + li_ancho/2 ;
 	li_holgura=.4 ;
 	
@@ -445,15 +446,15 @@ module cuerpo(elemento=cue_ancla) {
 	}
 	
 	module tornillo_presion_filamento(lado, masancho=false) {
-	// los soportes verticales tienden a dejar la capa de arriba 1 fila descolgada, asÌ que hago el agujero y el soporte
-	// 1 capa m·s alto (aÒadiendo medio gapplasop al radio) y luego subo el conjunto gapplasop/2
+	// los soportes verticales tienden a dejar la capa de arriba 1 fila descolgada, as√≠ que hago el agujero y el soporte
+	// 1 capa m√°s alto (a√±adiendo medio gapplasop al radio) y luego subo el conjunto gapplasop/2
 	// en otros agujeros no se nota el efecto o se arregla con un lijadito, pero en este caso prefiero agrandar
 	translate([cue_w-offset_eje-30/2-hcabtornillo,posicion_tornillo(lado)+gapplasop/2,htornillo])
 		rotate([0,90,0])  
 			union() {
 				scale([1,(rcabtornillo+gapplasop*(masancho ? 2 : 1)/2)/rcabtornillo,1])				
 					translate([0,0,30/2+(hcabtornillo-cue_w_merma)/2]) 
-						difference() { // un recorte del agujero que obliga a tallar el tornillo y asÌ no podr· girar
+						difference() { // un recorte del agujero que obliga a tallar el tornillo y as√≠ no podr√° girar
 							cylinder(r=rcabtornillo, h=hcabtornillo-cue_w_merma+ucm, $fn=fn(rcabtornillo), center=true);
 							translate([1.2-2*rcabtornillo,0,0])
 								cube([rcabtornillo*2, rcabtornillo*2, hcabtornillo+ucm], center=true);
@@ -478,7 +479,7 @@ module cuerpo(elemento=cue_ancla) {
 			translate([signo*(2*rcabtornillo-.45*rcabtornillo),0,0]) cube([2*rcabtornillo, 2*rcabtornillo, hcabtornillo], center=true);
 		}
 		
-		// ver comentarios sobre el tamaÒo del agujero en el module tornillo_presion_filamento()
+		// ver comentarios sobre el tama√±o del agujero en el module tornillo_presion_filamento()
 		translate([cue_w-offset_eje-largo_tor/2-hcabtornillo-cue_w_merma/2,posicion_tornillo(lado)+gapplasop/2,htornillo])
 			rotate([0,90,0])  
 				union() {
@@ -525,7 +526,7 @@ module cuerpo(elemento=cue_ancla) {
 	}
 
 	module agujeros_motor(poner_arandelas=false) {
-		ajuste = .2 ; // este ajuste corrige la posiciÛn del motor, y eso afecta al funcionamiento de los engranajes, asÌ que mejor no lo toco porque van bien
+		ajuste = .2 ; // este ajuste corrige la posici√≥n del motor, y eso afecta al funcionamiento de los engranajes, as√≠ que mejor no lo toco porque van bien
 		translate([dee - ajuste, som_l/2-cue_fondo/2,0])
 			rotate([90,0,0]) // taladros para los tornillos del motor
 				for (v = [[-1, 1], [-1, -1], [1,-1]] ) 
@@ -572,7 +573,7 @@ module cuerpo(elemento=cue_ancla) {
 					if (alto_zapatilla>0) {
 						difference() {
 							izquierda = defc/2+sobresale_cuerno_izq ;
-							derecha = X_eje_balanceo ; // el c·lculo de derecha no es fino, pero da igual porque hay que aÒadir m·s suela
+							derecha = X_eje_balanceo ; // el c√°lculo de derecha no es fino, pero da igual porque hay que a√±adir m√°s suela
 							translate([derecha/2-izquierda/2,0,alto_zapatilla/2])
 								cubor([izquierda+derecha, cue_fondo, alto_zapatilla], esquinas=12);
 							translate([-defc/2,0,alto_zapatilla+holgura_zapatilla])
@@ -623,7 +624,7 @@ module cuerpo(elemento=cue_ancla) {
 				}
 				if (alto_zapatilla>0) 
 					translate([defc/2, 0, 0]) 
-						cilindro(agj(4/2), 20); // agujero para el tornillo M4 del anclaje derecho (m·s vale que zozobre)
+						cilindro(agj(4/2), 20); // agujero para el tornillo M4 del anclaje derecho (m√°s vale que zozobre)
 			}
 				
 		} else if (pieza==cue_ancla_d) { // el anclaje derecho
@@ -724,9 +725,9 @@ module cuerpo(elemento=cue_ancla) {
 		
 		/* planteamiento mirando a mAka de frente
 			- plataforma rectangular con origen en la esquina posterior derecha del bloque central del extrusor
-			- la plataforma tendr· agujero para atornillarla al bloque, entre la entrada de filamento y el motor
-			- en el lado trasero habr· una cajita con una apertura trasera por donde entra el TCST
-			- a los lados de la plataforma habr· un soporte para un eje de .6mm paralelo a X por encima de la cajita
+			- la plataforma tendr√° agujero para atornillarla al bloque, entre la entrada de filamento y el motor
+			- en el lado trasero habr√° una cajita con una apertura trasera por donde entra el TCST
+			- a los lados de la plataforma habr√° un soporte para un eje de .6mm paralelo a X por encima de la cajita
 		*/
 
 		detector_xi = offset_eje+dee-an17/2-cue_w_merma+holgura_ec;
@@ -822,7 +823,7 @@ module cuerpo(elemento=cue_ancla) {
 					}
 					
 		if (que == cue_detector_obturador)
-			// obturador con pitÛn
+			// obturador con pit√≥n
 			translate(fabricar?[-55,-75,obturador_dx/2]:(esquina_referencia+[-cajita[0]/2, eje_yr - cajita[1],cue_alto+alto_detector+eje_zr])) 
 				rotate(fabricar?[0,90,0]:[0,0,0]) 
 					union() {
@@ -832,34 +833,34 @@ module cuerpo(elemento=cue_ancla) {
 								cylinder(r=raio, h=obturador_dx, center=true, $fn=fn(raio));
 							rotate([0,90,0])
 								cylinder(r=raio-(TCST[1]-2*balancin_gap_z), h=obturador_dx+ucm, center=true, $fn=fn(raio));
-							// corte del cilindro en la vertical del eje de rotaciÛn
+							// corte del cilindro en la vertical del eje de rotaci√≥n
 							translate([0,-raio,0])
 								cube([obturador_dx+ucm,raio*2,2*(raio+ucm)], center=true);
-							// evitar que llegue a tocar con el fondo del TCST (si el obturador entra con ·ngulo >40 tocarÌa)
+							// evitar que llegue a tocar con el fondo del TCST (si el obturador entra con √°ngulo >40 tocar√≠a)
 							translate([0,raio/2-eje_yr+TCST_escote_dz-balancin_gap_y,-raio/2])
 								cube([obturador_dx+ucm,raio,raio], center=true);
 							// evitar que toque con el techo de la cajita
 							alto = (alto_detector + eje_zr - plataforma[2]) * 2 ;
 							translate([0,0,cajita[2]-techo-balancin_gap_z])
 								cube([obturador_dx+ucm,2*raio,alto], center=true);
-							// corte del ·ngulo de giro que me interesa conservar
+							// corte del √°ngulo de giro que me interesa conservar
 							rotate([balancin_angulo_obturador,0,0])
 								translate([0,raio/2,-(raio+ucm)/2])
 									cube([obturador_dx+ucm,raio,raio+ucm], center=true);
 							}
-						// union del arco de obturaciÛn con el puente que va hacia el pitÛn del contrapeso
+						// union del arco de obturaci√≥n con el puente que va hacia el pit√≥n del contrapeso
 						local() {
 							dy = balancin_dy + balancin_gap_y + eje_yr + obturador_puente;
 							translate([0,-(dy-ucm/10)/2,balancin_gap_z-alto_detector-eje_zr+plataforma[2]+obturador_dz/2])
 								cube([obturador_dx, dy+ucm/10, obturador_dz], center=true);
 						}
-						// puente entre el obturador y el pitÛn del contrapes
+						// puente entre el obturador y el pit√≥n del contrapes
 						local() {
 							dz = raio + obturador_piton + eje_radio + obturador_holgura ;
 							translate([0,-(eje_yr+balancin_gap_y+balancin_dy+obturador_puente/2),dz/2-raio])
 								cube([obturador_dx, obturador_puente, dz], center=true);
 						}
-						// pitÛn para el contrapeso
+						// pit√≥n para el contrapeso
 						local() {
 							dy = obturador_puente + balancin_dy + balancin_gap_y + eje_yr + eje_radio;
 							translate([0,eje_radio-dy/2,obturador_piton/2+eje_radio + obturador_holgura])
@@ -895,7 +896,7 @@ module cuerpo(elemento=cue_ancla) {
 							}
 
 						}
-						local() { // quitar un filete elÌptico (lo de abajo queda como soporte)
+						local() { // quitar un filete el√≠ptico (lo de abajo queda como soporte)
 							a = alto_detector;
 							b = plataforma[0] - esquina_referencia[0] + (vertical_filamento_dx + holgura_filamento);
 							mucho=a*2+ucm;				
@@ -930,7 +931,7 @@ module cuerpo(elemento=cue_ancla) {
 										translate([0,mucho/2,0]) cube(mucho, center=true);
 									}
 						}
-						// alojamiento del tornillo de cabeza cÛnica
+						// alojamiento del tornillo de cabeza c√≥nica
 						translate([-dx_al_borde_agujero_detector, -cue_fondo/2, -ucm/2]) {
 							cylinder(r=agj(3/2), h=plataforma[2]+ucm, $fn=fn(agj(3/2)));
 							incision_antigiro();
@@ -984,7 +985,7 @@ module cuerpo(elemento=cue_ancla) {
 	
 
 	module redondeo_inf_izdo_rodatos() {
-		translate([-2.19, 0, 17.78])  // CHAPUZA DESCOMUNAL, PERO HACERLO BIEN SUPONE UNA ECUACI”N QUE NO ME APETECE ABORDAR
+		translate([-2.19, 0, 17.78])  // CHAPUZA DESCOMUNAL, PERO HACERLO BIEN SUPONE UNA ECUACI√ìN QUE NO ME APETECE ABORDAR
 			rotate([0,-25,0])
 				difference() {
 					translate([0, 0, 2.2]) cube([1, cue_fondo+ucm, 4], center=true); 
@@ -1041,7 +1042,7 @@ module cuerpo(elemento=cue_ancla) {
 #########  #####    #####    ###     ####    ###    ################################################
 ########    ########################################################################################		
 ##################################################################################################*/
-	*	color("grey") { // guÌas para orientarme
+	*	color("grey") { // gu√≠as para orientarme
 			translate([offset_eje,0,drg/2 + hvrg]) rotate([90,0,0])	cylinder(d=8, h=cue_fondo, center=true, $fn=fn(8/2));
 			translate([offset_eje-7/2-3/2,0,drg/2]) cylinder(d=3, h=100, center=true, $fn=fn(3/2)); 
 		}
@@ -1058,7 +1059,7 @@ module cuerpo(elemento=cue_ancla) {
 							scale([5.2/7.9, 1, 1])
 								cylinder(r=7.9/2-holgura_fulcro, h=cue_fondo, $fn=fn(7.9/2 * 2), center=true);	
 
-						// aÒadir una curva de acuerdo convexa
+						// a√±adir una curva de acuerdo convexa
 						translate([1.05, 0, .82]) rotate([90,0,0]) 
 							difference() {
 								cylinder(r=2.5, h=cue_fondo, center=true, $fn=fn(2.5));
@@ -1129,7 +1130,7 @@ module cuerpo(elemento=cue_ancla) {
 				rotate([90,0,0]) {
 					difference() {
 						scale([1.06,1.06,1]) cylinder(d=22, h=ancho_hueco, center=true, $fn=fn(22/2));
-						// apoyo para el aro interior del rodamiento (sÛlo hago el apoyo en un lado, en el otro ya pondrÈ arandela)
+						// apoyo para el aro interior del rodamiento (s√≥lo hago el apoyo en un lado, en el otro ya pondr√© arandela)
 						translate([0,0,ancho_hueco/2-.4/2]) cylinder(r=7, h=.4+ucm, center=true, $fn=fn(7/2));
 					}
 					cylinder(r=agj(7.8/2), h=cue_fondo+ucm, $fn=fn(7.8/2), center=true);
@@ -1161,7 +1162,7 @@ module cuerpo(elemento=cue_ancla) {
 						translate([0,0,ancho_hueco/2-(.4+gapplasop)/2]) cylinder(r=7+sephsop, h=.4+gapplasop, center=true, $fn=fn(ancho_hueco/2));
 					}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	} else { // aquÌ empieza la descripciÛn del cuerpo
+	} else { // aqu√≠ empieza la descripci√≥n del cuerpo
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*##################################################################################################
@@ -1176,20 +1177,20 @@ module cuerpo(elemento=cue_ancla) {
 ##################################################################################################*/
 
 
-		// voltear hasta la posiciÛn de fabricaciÛn para afeitar sin tocar el soporte del rodamiento, y devolver a su posiciÛn de dibujo
+		// voltear hasta la posici√≥n de fabricaci√≥n para afeitar sin tocar el soporte del rodamiento, y devolver a su posici√≥n de dibujo
 		translate([0,-cue_fondo/2,0]) rotate([-90,0,0]) afeita(afeitado * fabricar) rotate([90,0,0]) translate([0,cue_fondo/2,0])
-			difference() {	// sobre el cuerpo del extrusor ya colocado en posiciÛn, le quito el hueco del anclaje	
+			difference() {	// sobre el cuerpo del extrusor ya colocado en posici√≥n, le quito el hueco del anclaje	
 				translate([offset_eje, 0, drg/2 + hvrg]) {  // colocar la base en 0
 					difference() {
-						// X para que el tornillo (a 14mm del lado X dcho) estÈ en X=0, con 0.2 de holgura		
+						// X para que el tornillo (a 14mm del lado X dcho) est√© en X=0, con 0.2 de holgura		
 						// Z para que el eje sea Z=0 (determinado por el radio de la rueda dentada () */	
 						translate([dee - an17 / 2 + holgura_ec - cue_w/2, 0, cue_alto/2 - (drg/2 + hvrg)])	{	
 							union() { // unir el cuerpo con los laterales
-								intersection() { // esta intersecciÛn hace la vertiente curva de la izda de X
+								intersection() { // esta intersecci√≥n hace la vertiente curva de la izda de X
 								  // cuerpo del extrusor
-									// nueva chapuza: todo el extrusor est· organizado alrededor del prisma [cue_w,cue_fondo,cue_alto] y
+									// nueva chapuza: todo el extrusor est√° organizado alrededor del prisma [cue_w,cue_fondo,cue_alto] y
 									// ahora he decidido dejar un hueco para que el motor respire, y el caso es que me da pereza
-									// revisar el uso de cue_w, asÌ que dejarÈ cue_w como est·, y el prisma lo harÈ restando cue_w_merma
+									// revisar el uso de cue_w, as√≠ que dejar√© cue_w como est√°, y el prisma lo har√© restando cue_w_merma
 									translate([-cue_w_merma/2,0,0])							  
 										cube([cue_w-cue_w_merma,cue_fondo,cue_alto], center=true);
 									translate([cue_w/2-(1-puovi)*cue_w,0,-cue_w*povi+cue_alto/2])  
@@ -1206,40 +1207,40 @@ module cuerpo(elemento=cue_ancla) {
 											}
 								}
 								
-								// en este momento, el punto [0,0,0] est· en el centro del cuerpo, y voy a hacer el lado izquierdo
-								// aquÌ los cilindros tienen doble de precisiÛn en cuanto a facetas; las medidas vienen de blender, est·n hechas a ojo y son injustificables
+								// en este momento, el punto [0,0,0] est√° en el centro del cuerpo, y voy a hacer el lado izquierdo
+								// aqu√≠ los cilindros tienen doble de precisi√≥n en cuanto a facetas; las medidas vienen de blender, est√°n hechas a ojo y son injustificables
 								translate([-cue_w/2, -cue_fondo/2,-cue_alto/2]) {
 									altura_magica = ser_l+3.41 ;
 									raio_tobogan = altura_magica-pizd_h ;
 									escala_tobogan = 2.5 ;
 									difference() {
 										union() {
-											// este primer bloque es para formar tobogan_apoyo_tensor al quitarle un cilindro que est· m·s adelante
+											// este primer bloque es para formar tobogan_apoyo_tensor al quitarle un cilindro que est√° m√°s adelante
 											translate([-(10.43+raio_tobogan*escala_tobogan+1), 0, 0]) cube([10.43+raio_tobogan*escala_tobogan+1+ucm, cue_fondo, ser_l]);
 
 											// esta es la playa que se extiende desde la caida del soporte del presor hacia la izquierda
-											// como es lÛgico, me defeco en todo por haber tenido que llegar a hacer estas cuentas para posicionarme respecto al agujero del carro
+											// como es l√≥gico, me defeco en todo por haber tenido que llegar a hacer estas cuentas para posicionarme respecto al agujero del carro
 											translate([-offset_eje - dee + an17 / 2 - holgura_ec + cue_w - (defc/2+sobresale_cuerno_izq)/2, cue_fondo/2, pizd_h/2]) 
 												rotate([90,0,0]) 
 												cubor([defc/2+sobresale_cuerno_izq,pizd_h,cue_fondo],esquinas=12);
 															
 											translate([-15.813,0,ser_l-ucm]) cube([15.813+ucm, cue_fondo, 3.43+ucm]);
 											translate([-8.66,0,ser_l-ucm]) cube([2, cue_fondo, 4.5+ucm]);
-											hull() { // apoyo_prensor: tiene 2 cilindros unidos. El izquierdo forma un tobog·n hacia la playa izquierda
+											hull() { // apoyo_prensor: tiene 2 cilindros unidos. El izquierdo forma un tobog√°n hacia la playa izquierda
 												translate([-10.43,cue_fondo, altura_magica]) rotate([90,0,0]) cylinder(h=cue_fondo, r=1, $fn=fn(1*2));
 												translate([-7.43,cue_fondo, altura_magica + 1.1]) rotate([90,0,0]) cylinder(h=cue_fondo, r=1, $fn=fn(1*2));
 											}
 										}
-										// alojamiento del apoyo inferior de la pieza de presiÛn del filamento
+										// alojamiento del apoyo inferior de la pieza de presi√≥n del filamento
 										translate([-3.73,cue_fondo+ucm/2, altura_magica - .5]) rotate([90,64,0]) scale([5.2/7.9, 1, 1]) cylinder(h=cue_fondo+ucm, r=7.9/2, $fn=fn(7.9/2 * 2));	
-										// tobogan_apoyo_prensor: su posiciÛn y tamaÒo depende de la posiciÛn y tamaÒo del cilindro izquierdo de apoyo_tensor
+										// tobogan_apoyo_prensor: su posici√≥n y tama√±o depende de la posici√≥n y tama√±o del cilindro izquierdo de apoyo_tensor
 										translate([-10.43-raio_tobogan*escala_tobogan-1,cue_fondo+ucm/2, altura_magica]) 
 											scale([escala_tobogan,1,1])
 												rotate([90,0,0]) 
 													cylinder(h=cue_fondo+ucm, r=raio_tobogan, $fn=fn(raio_tobogan*2));
-										// abrir hueco para la arandela del anclaje izquierdo, en un ·ngulo de 45∫ aplicable sÛlo en el plano YZ
+										// abrir hueco para la arandela del anclaje izquierdo, en un √°ngulo de 45¬∫ aplicable s√≥lo en el plano YZ
 										raio=9 ; alto=4 ;
-										translate([ -defc/2 - offset_eje - dee + an17 / 2 - holgura_ec + cue_w, cue_fondo/2, pizd_h+alto/2 ]) // salvo el 1er sumando de X, todo es para compensar translates; Y tambiÈn
+										translate([ -defc/2 - offset_eje - dee + an17 / 2 - holgura_ec + cue_w, cue_fondo/2, pizd_h+alto/2 ]) // salvo el 1er sumando de X, todo es para compensar translates; Y tambi√©n
 											hull() {
 												translate([0,0,(alto+ucm)/2]) 
 													scale([1,(raio+alto)/raio,1]) 
@@ -1251,8 +1252,8 @@ module cuerpo(elemento=cue_ancla) {
 								}
 								
 								
-								// ahora los soportes para el motor (es mi primera chapucilla, asÌ que no est· hecha con finura)
-								translate([(cue_w + an17)/2-cue_w_merma, som_l/2-cue_fondo/2, (cue_alto-an17)/2]) rotate([90,0,0]) { // soporte motor ya colocado en su posiciÛn
+								// ahora los soportes para el motor (es mi primera chapucilla, as√≠ que no est√° hecha con finura)
+								translate([(cue_w + an17)/2-cue_w_merma, som_l/2-cue_fondo/2, (cue_alto-an17)/2]) rotate([90,0,0]) { // soporte motor ya colocado en su posici√≥n
 									difference() 
 									{ // soporte motor con agujero
 										union()	{
@@ -1290,22 +1291,22 @@ module cuerpo(elemento=cue_ancla) {
 													}
 												}
 											}
-											// rect·ngulo inferior izquierdo
-											recorte = 2 ; // el recorte es para evitar un pico que sale cuando el eje de balanceo est· muy hacia el centro
+											// rect√°ngulo inferior izquierdo
+											recorte = 2 ; // el recorte es para evitar un pico que sale cuando el eje de balanceo est√° muy hacia el centro
 											translate([(an17/2-recorte)/2-an17/2, ucm/2-an17/4, 0]) cube([an17/2+ucm-recorte, an17/2+ucm, som_l], center=true);												
 												
 										}
 										// hacer el agujero para la boina del motor
 										cilindro(hbm, som_l+ucm);
 									}
-									// ahora los cuernos que se agarran al eje de rotaciÛn del cuerpo (para que pueda bascular con sobrepresiones)
+									// ahora los cuernos que se agarran al eje de rotaci√≥n del cuerpo (para que pueda bascular con sobrepresiones)
 									// los hago uniendo unas piezas de base, y luego quitando el hueco del tornillo y el voladizo del soporte motor
 									union () 
 									{ // bloque de base				
 										translate([-an17/2-ucm/2+ser_wo/2, an17/2 - cue_alto + ser_h/2, som_l/2-cue_fondo/2]) 
 											cubor([ser_wo+ucm, ser_h, cue_fondo], esquinas=1);
 										difference() 
-										{ // redondeo en el rincÛn que forma el cuerpo con la base
+										{ // redondeo en el rinc√≥n que forma el cuerpo con la base
 											translate([-an17/2-ucm, an17/2-cue_alto+ser_h-ucm, som_l/2-cue_fondo]) cube([rcs+ucm, rcs+ucm, cue_fondo]);
 											translate([-an17/2-ucm+rcs, an17/2-cue_alto+ser_h-ucm+rcs, som_l/2-cue_fondo/2]) cilindro(rcs+ucm, cue_fondo+ucm);
 										}
@@ -1343,13 +1344,13 @@ module cuerpo(elemento=cue_ancla) {
 							translate([-11-offset_eje,0,0]) cilindro(11+2, 8+ucm);			
 						}
 						
-						// redondeo del extremo inferior de la apertura del rodamiento (versiÛn reducida)
+						// redondeo del extremo inferior de la apertura del rodamiento (versi√≥n reducida)
 						translate(-[dee - an17 / 2 + .2 - cue_w/2+offset_eje, 0, cue_alto / 2]) // le quito los translates, actuales
 							redondeo_inf_izdo_rodatos();
 							
-						// abrir bien el hueco para el rodamiento de presiÛn (hasta mitad de tornillo + 3,5mm)
+						// abrir bien el hueco para el rodamiento de presi√≥n (hasta mitad de tornillo + 3,5mm)
 						translate([-cue_alto/2-(1-puovi)*cue_w/2, 0, cue_alto/2-3.5]) cube(cue_alto, cue_alto, cue_alto, center=true);
-						// agujero filamento: desplazar radio tornillo moleteado + radio filamento - incisiÛn, y agrandar un poco en X
+						// agujero filamento: desplazar radio tornillo moleteado + radio filamento - incisi√≥n, y agrandar un poco en X
 						translate([-offset_eje, 0, -(drg/2+hvrg)]) vertical_filamento(true);
 						// hueco para la pieza de enganche izquierda
 						translate([-defc/2-offset_eje,0,li_alto/2-(drg/2 + hvrg)]) {
@@ -1375,7 +1376,7 @@ module cuerpo(elemento=cue_ancla) {
 					rotate([90,0,0]) cylinder(r=rehuefi, h=1, $fn=fn(rehuefi), center=true);
 				}
 				
-				// conducto de ventilaciÛn del motor
+				// conducto de ventilaci√≥n del motor
 				{ amh = 5 ; aml = 14 ; ama = 40 ; largo = 15 ; desplazamiento = 5.5 ;
 				translate([cue_w/2+offset_eje,0,vnt_h/2+vnt_b+desplazamiento]) 
 					rotate([0,ama,0])
@@ -1389,19 +1390,19 @@ module cuerpo(elemento=cue_ancla) {
 										for (lado = [-1, 1] )
 											translate([0, lado*(aml-amh)/2, 0]) cylinder(r=amh/2-gapplasop, h=largo+ucm, center=true, $fn=fn(amh/2));							
 									for ( flanco = [-1,1] )
-										translate([flanco*(5+.65*(amh/2-gapplasop)),0,0]) // .6 es la fracciÛn de un cÌrculo que requiere soporte (cos(55) aprox)
+										translate([flanco*(5+.65*(amh/2-gapplasop)),0,0]) // .6 es la fracci√≥n de un c√≠rculo que requiere soporte (cos(55) aprox)
 											cube([10,largo, largo+ucm*2], center=true);
 								}
 						}
 				}
 				
-				// hueco para el anclaje derecho; el c·lculo de posiciÛn en Z tambiÈn es complicado, pero como se trata de hacer un agujero, hago la lengua muy gorda y resuelto
+				// hueco para el anclaje derecho; el c√°lculo de posici√≥n en Z tambi√©n es complicado, pero como se trata de hacer un agujero, hago la lengua muy gorda y resuelto
 				translate([defc/2, 0, adgl/2]) scale([(adabl+adhxl)/adabl,1,2]) anclaje_dcha_lengua();
 				translate([0,0,ejebalanceo]) eje_balanceo(3.6/2);
 
 				
-				// huecos para los tornillos de presiÛn de filamento (uno a cada lado)
-				difference() { // al tornillo delantero hay que darle una lijadita porque de lo contrario habrÌa que rebajar el soporte del motor
+				// huecos para los tornillos de presi√≥n de filamento (uno a cada lado)
+				difference() { // al tornillo delantero hay que darle una lijadita porque de lo contrario habr√≠a que rebajar el soporte del motor
 					tornillo_presion_filamento(-1);
 					translate([cue_w-10,-10-cue_fondo/2+som_l,htornillo])
 						cube(20, center=true);
@@ -1414,7 +1415,7 @@ module cuerpo(elemento=cue_ancla) {
 		
 		
 		// estructura guia-filamento con sus soportes	
-		// hay muchos par·metros puestos al tun-tun porque a estas alturas habrÌa que rehacer todo el s'extrusor para darle coherencia (y no me apetece)
+		// hay muchos par√°metros puestos al tun-tun porque a estas alturas habr√≠a que rehacer todo el s'extrusor para darle coherencia (y no me apetece)
 				X_jiji = (1-puovi)*cue_w ; // parte plana desde el lado del motor hasta que empieza la bajada (el largo deseado lo mido
 										   // desde el lado del motor, pero la estructura empieza en X_jiji para no afectar a los huecos de los tornillos)
 				largo = 24 - X_jiji ;
@@ -1422,7 +1423,7 @@ module cuerpo(elemento=cue_ancla) {
 				alto = 9 ;
 				ancho = posicion_tornillo(1)-posicion_tornillo(-1)+gapplasop+rtornillo ;
 				ajuste_encaje_presor = -9.4 ;
-				extender_recorte_tornillo = 11 ; // extender el recorte del tornillo del presor para que me haga el recorte de la guÌa
+				extender_recorte_tornillo = 11 ; // extender el recorte del tornillo del presor para que me haga el recorte de la gu√≠a
 				difference() {
 
 					union() {
@@ -1517,10 +1518,10 @@ module cuerpo(elemento=cue_ancla) {
 ##################################################################################################*/
 
 		if (hacer_soportes && (elemento==cue_cuerpo)) {
-			// para los tornillos de presiÛn del filamento
+			// para los tornillos de presi√≥n del filamento
 			intersection() {
 				union() {
-					translate([offset_eje + dee - an17 / 2 + holgura_ec -(1-puovi)*cue_w, 0, cue_alto-cue_w*povi-.15]) // el .15 es empÌrico e ignoro a quÈ se debe, pero lo necesito :-(  
+					translate([offset_eje + dee - an17 / 2 + holgura_ec -(1-puovi)*cue_w, 0, cue_alto-cue_w*povi-.15]) // el .15 es emp√≠rico e ignoro a qu√© se debe, pero lo necesito :-(  
 						scale([puovi,1,povi]) 
 							rotate([90, 0, 0]) 			
 								cilindro(cue_w, cue_fondo+ucm);
@@ -1528,7 +1529,7 @@ module cuerpo(elemento=cue_ancla) {
 						cube([cue_w, cue_fondo, cue_alto], center=true);
 				}
 				union() {		
-					difference() { // al tornillo delantero hay que darle una lijadita porque de lo contrario habrÌa que rebajar el soporte del motor
+					difference() { // al tornillo delantero hay que darle una lijadita porque de lo contrario habr√≠a que rebajar el soporte del motor
 						soporte_tornillo_presion_filamento(-1);
 						translate([cue_w-10,-10-cue_fondo/2+som_l+gapplasop,htornillo])
 							cube(20, center=true);
@@ -1547,8 +1548,8 @@ module cuerpo(elemento=cue_ancla) {
 							intersection() {
 								rotate([90,0,0]) 								
 									translate([adlbl-dX_soporte/2,ser_h/2-zapatilla,0]) 
-										// mirror([0,1,0]) // el reflejo en Y es para que el soporte no tenga un lado plano sobre el redondeo de los cuernos (no saldrÌa bien)
-											// el espesor=1 es la ˙nica forma que he encontrado de hacer un recorrido Ûptimo, sin cortes
+										// mirror([0,1,0]) // el reflejo en Y es para que el soporte no tenga un lado plano sobre el redondeo de los cuernos (no saldr√≠a bien)
+											// el espesor=1 es la √∫nica forma que he encontrado de hacer un recorrido √≥ptimo, sin cortes
 										soporte_paralelo([dX_soporte, ser_h, adabl], espesor=.63, hueco=3.5, sombrero=false);
 								translate([0,0,ser_h/2-zapatilla])
 									scale([1,(adabl-gapplasop*2)/adabl,ser_h/adgl]) 
@@ -1605,7 +1606,7 @@ module cuerpo(elemento=cue_ancla) {
 			difference() {
 				intersection() {
 					translate([-4,0,20.6]) cube([3,7.7,4.7], center=true);                          
-					translate([ offset_eje + dee - an17 / 2 +.2 -(1-puovi)*cue_w, 0, cue_alto-cue_w*povi-.15]) // el .15 es empÌrico e ignoro a quÈ se debe, pero lo necesito :-(  
+					translate([ offset_eje + dee - an17 / 2 +.2 -(1-puovi)*cue_w, 0, cue_alto-cue_w*povi-.15]) // el .15 es emp√≠rico e ignoro a qu√© se debe, pero lo necesito :-(  
 						scale([puovi,1,povi]) 
 							rotate([90, 0, 0]) 
 								cilindro(cue_w, cue_fondo+ucm);
@@ -1613,7 +1614,7 @@ module cuerpo(elemento=cue_ancla) {
 				}
 				translate([offset_eje,0,drg/2 + hvrg]) rotate([90,0,0]) cilindro(agj(11), 8+ucm);			
 				cube([2,cue_fondo,2], center=true);
-				translate([-2.05,0,4.3]) // si, me averg¸enzo de esto :(
+				translate([-2.05,0,4.3]) // si, me averg√ºenzo de esto :(
 					redondeo_inf_izdo_rodatos();
 			}
 
@@ -1654,8 +1655,8 @@ module cuerpo(elemento=cue_ancla) {
 // cuerpo (el afeitado respeta soportes, y se hace in-situ)
 if (hacer_cuerpo) translate(fabricar?[0,0,14]:[0,0,0]) rotate(fabricar?[90,0,0]:[0,0,0]) /*render()*/ cuerpo(cue_cuerpo); 
 
-// presor: OjO porque no es simÈtrico. Los canales para los tornillos est·n desplazados en cuerpo y presor, y deben ir hacia el mismo lado
-// adem·s el hueco tiene una arandela impresa en un lado, y el soporte debe llevar el sombrero sÛlo en las capas superiores
+// presor: OjO porque no es sim√©trico. Los canales para los tornillos est√°n desplazados en cuerpo y presor, y deben ir hacia el mismo lado
+// adem√°s el hueco tiene una arandela impresa en un lado, y el soporte debe llevar el sombrero s√≥lo en las capas superiores
 if (hacer_presor) afeita(afeitado * fabricar) translate(fabricar?[75,-22,cue_fondo/2]:[0,0,0]) rotate(fabricar?[90,0,-45]:[0,0,0]) cuerpo(cue_presor); 
 	
 // casquillo separador del engranaje
@@ -1681,16 +1682,16 @@ if (hacer_catalina)
 				translate([0,0,grosor_engranajes/2])
 					engranaje_grande();
 
-// engranajes: piÒon
+// engranajes: pi√±on
 if (hacer_pinion) {
 	translate(fabricar?[34,-70,0]:[offset_eje + dee,-(cue_fondo/2 + separa_engranajes_del_cuerpo + (tornillo_fuera ? -.2 : .2+grosor_engranajes)),drg/2+hvrg])
 		rotate(fabricar?[0,0,0]:[tornillo_fuera? 90 : -90,0,0])
 			afeita(sign(afeitado) * .3 * fabricar)
-				translate([0,0,grosor_engranajes/2+.2]) // el piÒon es .4 m·s ancho que grosor_engranajes
+				translate([0,0,grosor_engranajes/2+.2]) // el pi√±on es .4 m√°s ancho que grosor_engranajes
 					engranaje_peque(tornillo_fuera);
 	}
 
-// anclaje completo (el afeitado respeta soportes, asÌ que se hace in-situ
+// anclaje completo (el afeitado respeta soportes, as√≠ que se hace in-situ
 if (hacer_anclajes)
 	translate(fabricar?[27,-70,0]:[0,0,-holgura_zapatilla]) 
 		cuerpo(cue_ancla);

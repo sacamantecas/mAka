@@ -1,5 +1,5 @@
 # mAka
-##Piezas del post-desarrollo de mi impresora 3D mAka.
+## Piezas del post-desarrollo de mi impresora 3D mAka.
 
 It is licensed under the Creative Commons - GNU LGPL 2.1 license.
 

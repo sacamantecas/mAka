@@ -1,6 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // piezas para completar la cama de hacer PCBs
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
+//
 //
 
 fabricar = 1 ;

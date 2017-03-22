@@ -1,6 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // barrera optica y su soporte para el endstop "traspasable" de Z
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
+//
 //
 
 fabricar = 0 ;

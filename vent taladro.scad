@@ -1,6 +1,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 //
 // soporte para ventilador del minitaladro (el proceso de esta forma es lentísimo)
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
+//
 //
 
 

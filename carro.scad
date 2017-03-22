@@ -1,8 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // carro del eje X de mAka y sus accesorios
-// capas de 1/3mm para el portataladro y de .2mm para el resto
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
 //
+//
+// capas de 1/3mm para el portataladro y de .2mm para el resto
 //
 
 fabricar = 0 ; // algunas partes se fabrican separadas

@@ -1,6 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// piezas correspondientes al eje Y
+// piezas correspondientes al eje Y de mAka
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
+//
 //
 
   /* soporte del motor de Y */	translate(fabricar?[-30,25,0]:[mY_soporte_x+mY_soporte_dx/2,0,0]) rotate(fabricar?[0,0,0]:[0,-90,0]) soporte_motor_Y();

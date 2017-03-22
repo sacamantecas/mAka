@@ -1,9 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // piezas relacionadas con la sonda de Z para el autolevel
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
+//
 // puedes seleccionar una de las 5 lineas siguientes anteponiendo un !
 // o seleccionar varias anteponiendo * en las que no quieras
-//
 //
   /* rotor (2 piezas) */ 						rotor();
   /* cuerpo */									cuerpo();

@@ -1,6 +1,10 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // extrusor para mAka
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
+//
+//
 // todas las piezas se fabrican con capas de .2
 //
 

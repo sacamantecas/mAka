@@ -1,6 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // portacarretes para servir filamento en el eje Y, para colocar sobre el marco de mAka
+// It is licensed under the Creative Commons - GNU LGPL 2.1 license.
+// © 2014-2017 by luiso gutierrez (sacamantecas)
+//
 //
 
 use <utilidades.scad>

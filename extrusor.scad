@@ -853,25 +853,21 @@ module cuerpo(elemento=cue_ancla) {
 									cube([obturador_dx+ucm,raio,raio+ucm], center=true);
 							}
 						// union del arco de obturación con el puente que va hacia el pitón del contrapeso
-						local() {
-							dy = balancin_dy + balancin_gap_y + eje_yr + obturador_puente;
+						{	dy = balancin_dy + balancin_gap_y + eje_yr + obturador_puente;
 							translate([0,-(dy-ucm/10)/2,balancin_gap_z-alto_detector-eje_zr+plataforma[2]+obturador_dz/2])
 								cube([obturador_dx, dy+ucm/10, obturador_dz], center=true);
 						}
 						// puente entre el obturador y el pitón del contrapes
-						local() {
-							dz = raio + obturador_piton + eje_radio + obturador_holgura ;
+						{	dz = raio + obturador_piton + eje_radio + obturador_holgura ;
 							translate([0,-(eje_yr+balancin_gap_y+balancin_dy+obturador_puente/2),dz/2-raio])
 								cube([obturador_dx, obturador_puente, dz], center=true);
 						}
 						// pitón para el contrapeso
-						local() {
-							dy = obturador_puente + balancin_dy + balancin_gap_y + eje_yr + eje_radio;
+						{	dy = obturador_puente + balancin_dy + balancin_gap_y + eje_yr + eje_radio;
 							translate([0,eje_radio-dy/2,obturador_piton/2+eje_radio + obturador_holgura])
 								cube([obturador_dx, dy, obturador_piton], center=true);
 						}
-						local() {
-							dy = cajita[1] - eje_yr - eje_radio + 2 ;
+						{	dy = cajita[1] - eje_yr - eje_radio + 2 ;
 							translate([0,eje_radio,eje_radio + obturador_holgura])
 								rotate([balancin_angulo_piton,0,0])
 									translate([0,dy/2,obturador_piton/2])
@@ -900,7 +896,7 @@ module cuerpo(elemento=cue_ancla) {
 							}
 
 						}
-						local() { // quitar un filete elíptico (lo de abajo queda como soporte)
+						{ // quitar un filete elíptico (lo de abajo queda como soporte)
 							a = alto_detector;
 							b = plataforma[0] - esquina_referencia[0] + (vertical_filamento_dx + holgura_filamento);
 							mucho=a*2+ucm;				
@@ -940,8 +936,7 @@ module cuerpo(elemento=cue_ancla) {
 							cylinder(r=agj(3/2), h=plataforma[2]+ucm, $fn=fn(agj(3/2)));
 							incision_antigiro();
 						}
-						local() { 
-							raio = correccion(cabeza_diametro  +  .5) / 2 + ucm;
+						{ 	raio = correccion(cabeza_diametro  +  .5) / 2 + ucm;
 							translate([-dx_al_borde_agujero_detector, -cue_fondo/2, plataforma[2] - (raio - ucm)/2]) 
 								cylinder(r1=correccion(0  +  .2), r2=raio, h=raio, center=true, $fn=fn(raio));
 						}

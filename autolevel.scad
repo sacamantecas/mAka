@@ -24,7 +24,6 @@ $alto_de_capa = .2 ;
 use <utilidades.scad>
 function ajuste_manual(p) = p;
 function cac(cuanto, exceso=false) = floor((cuanto+(exceso?($alto_de_capa-.0001):0))/$alto_de_capa)*$alto_de_capa;
-module local() { children(); }
 
 $fs = .5 ;
 $fa = 1 ;
@@ -513,12 +512,10 @@ module cuerpo() {
 			translate([endstop_x, -mp, raja_zi])
 				cube([raja_dx, rodamiento_r, 0 - raja_zi]);
 			// alojamiento para el endstop
-			local() {
-				cq = [endstop_dx + 2* endstop_holgura_meter, endstop_dy + 2 * endstop_holgura_meter, 0 - (endstop_z + endstop_dz/2)];
+			{	cq = [endstop_dx + 2* endstop_holgura_meter, endstop_dy + 2 * endstop_holgura_meter, 0 - (endstop_z + endstop_dz/2)];
 				translate([endstop_x-cq[0]/2, cuerpo_yi - cq[1]/2, -cq[2]]) cube(cq);
 			}
-			local() {
-				cq = [endstop_dx, endstop_dy, 0 - (endstop_z - endstop_dz/2)];
+			{	cq = [endstop_dx, endstop_dy, 0 - (endstop_z - endstop_dz/2)];
 				translate([endstop_x-cq[0]/2, cuerpo_yi - cq[1]/2, -cq[2]]) cube(cq);
 			}
 			// alojamiento para travesaños que sujetan el endstop: entrada grande, y salida ciega igual que el agujero del endstop
@@ -554,8 +551,7 @@ module cuerpo() {
 					rotate([90,0,0])					
 						cylinder(r=espacio_para_orejas_r, h=ancho_cavidad, center=true);						
 				// abrir camino para introducir la lanceta ya montada con puntera y rotor
-				local() {
-					dx = cuerpo_dx/2-rotor_x - pared_derecha_dx;
+				{	dx = cuerpo_dx/2-rotor_x - pared_derecha_dx;
 					dy = ancho_cavidad;
 					dz = abertura_lanceta_z-cuerpo_zi;
 					translate([dx,-dy/2,-rotor_z+abertura_lanceta_z]) 
@@ -584,14 +580,12 @@ module cuerpo() {
 				}
 			}
 			// vertical canal eje
-			local() {
-				alto = presor_eje_z - cuerpo_zi + presor_eje_dz/2;
+			{	alto = presor_eje_z - cuerpo_zi + presor_eje_dz/2;
 				translate([presor_canal_x, cuerpo_yi, cuerpo_zi + (alto-mp)/2])
 					cube([presor_eje_dx, presor_eje_dy, alto+mp], center=true);
 			}
 			// horizontal canal eje
-			local() {
-				profundo = ajuste_manual(presor_eje_x - presor_canal_x  +  .2 );
+			{	profundo = ajuste_manual(presor_eje_x - presor_canal_x  +  .2 );
 				translate([presor_canal_x + profundo/2, cuerpo_yi, presor_eje_z]) {
 					cube([profundo, presor_eje_dy, presor_eje_dz], center=true);
 					translate([profundo / 2, 0, 0])	
@@ -603,14 +597,12 @@ module cuerpo() {
 			translate([cuerpo_dx/2 - presor_claraboya_pared_dx - presor_claraboya_dx, cuerpo_yi - presor_claraboya_dy/2, techo_cavidad - mp])
 				cube([presor_claraboya_dx, presor_claraboya_dy, 0-techo_cavidad]);
 			// guía para el empujador de la lanceta (que no cae por su propio peso)
-			local() {
-				dx = empujador_lanceta_dx + empujador_lanceta_holgura_dx;
+			{	dx = empujador_lanceta_dx + empujador_lanceta_holgura_dx;
 				translate([empujador_lanceta_x-dx/2, cuerpo_yi - ancho_cavidad/2, techo_cavidad - mp])
 					cube([dx, ancho_cavidad, 0-techo_cavidad]);
 			}
 			// recorte para evitar dobleces de la brida, con transición que no requiere soporte
-			local() {
-				zi = - brida_pi * sqrt(pow(rodamiento_r,2) - pow(  endstop_dy/2+endstop_holgura_meter  + cuerpo_yi, 2));
+			{	zi = - brida_pi * sqrt(pow(rodamiento_r,2) - pow(  endstop_dy/2+endstop_holgura_meter  + cuerpo_yi, 2));
 				zs = - brida_pi * sqrt(pow(rodamiento_r,2) - pow(-(endstop_dy/2+endstop_holgura_meter) + cuerpo_yi, 2));
 				dz = zs + rodamiento_r * brida_pi ;
 				sporte = brida_dx/tan(angulo_voladizo);
@@ -629,8 +621,7 @@ module cuerpo() {
 
 		if (hacer_soportes) {
 			// soporte lado presor
-			local() {
-				cubo = [cuerpo_dx/2-presor_canal_x-pared_derecha_dx-sephsop, presor_hueco_dy - sephsop*2, abertura_lanceta_z - cuerpo_zi];
+			{	cubo = [cuerpo_dx/2-presor_canal_x-pared_derecha_dx-sephsop, presor_hueco_dy - sephsop*2, abertura_lanceta_z - cuerpo_zi];
 				translate([cuerpo_dx/2 - pared_derecha_dx - sephsop - cubo[0], cuerpo_yi - cubo[1]/2, cuerpo_zi])
 					soporte_paralelo(ajuste_manual(cubo  -  [.2,0,0]), center=false); // Kisslicer mariconea con ese soporte si el tabique derecho está cerca de lo otro
 			}
@@ -639,8 +630,7 @@ module cuerpo() {
 			translate([presor_canal_x, cuerpo_yi - ancho_cavidad/2 + sephsop, abertura_lanceta_z + gapplasop])
 				soporte_paralelo([cuerpo_dx/2 - presor_canal_x, ancho_cavidad - 2 * sephsop, techo_cavidad - abertura_lanceta_z - gapplasop * 2], center=false);
 			// soportillo del hueco del eje del presor
-			local() {
-				sephsop = ajuste_manual(sephsop  +  .2);
+			{	sephsop = ajuste_manual(sephsop  +  .2);
 				gapplasop = $alto_de_capa; // la asignación normal de .25 me está fallando :(
 				entra_en_cul_de_sac = .3 ;
 				dxph = presor_eje_x - presor_canal_x + entra_en_cul_de_sac;

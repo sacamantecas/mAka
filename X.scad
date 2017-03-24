@@ -382,7 +382,7 @@ difference() {
 					}
 				
 				// cursor (hay que abrir el hueco hacia el motor)
-				local() {
+				{
 					mucho=hueco_cursor_holgado[0] * 2;
 					cubo(c=[mucho,hueco_cursor_holgado[1],hueco_cursor_holgado[2]+mp], t=[mucho/2+vri_x-hueco_cursor_holgado[0]/2, 0, (hueco_cursor_holgado[2]-mp)/2]);
 					if (completo + hacer_endstops_XZ) {	
@@ -560,7 +560,7 @@ if (hacer_tensor_vertical)
 
 module descuentos_comunes() {
 	// varillas y rodamientos
-	local() {
+	{
 		H = rv_largo * 2 + rv_separa + rv_holgura ; 
 		cilindro(d=correccion(rv_diametro + .3), h=H+mp, t=[0,0,H/2+mp/2+rv_base] );
 	}
@@ -681,8 +681,7 @@ module sedX(poner) {
 						cubo([sedX_brida[0], mucho, mucho], t=[brida_x,(sedX_brida[1]-base_dy-mucho)/2,0]);
 					}
 					// dos pinchos para el mmr, con su soporte
-					local() {
-						pos_pincho = [signo_lado * (mmr_hueco[2]/2-mmr_agujero_altura),mmr_agujero_pincho_sale/2,0]+pos_mmr ;
+					{	pos_pincho = [signo_lado * (mmr_hueco[2]/2-mmr_agujero_altura),mmr_agujero_pincho_sale/2,0]+pos_mmr ;
 						for ( lado = [-1,1] )																											   
 							cubo([mmr_agujero_pincho, mmr_hueco[1]+mmr_agujero_pincho_sale+mp, mmr_agujero_pincho], t=pos_pincho-[0,mp/2,mmr_agujero_descentre * lado]);
 						if (fabricar)
@@ -702,8 +701,7 @@ module sedX(poner) {
 					}
 						
 					// dos pinchos que entran en el cuerpo
-					local() {
-						un_poco_mas =  1 ; // hace falta más pincho, por la interferencia con el "tejado" de la base (si sedX_pincho[2]>1.8)
+					{	un_poco_mas =  1 ; // hace falta más pincho, por la interferencia con el "tejado" de la base (si sedX_pincho[2]>1.8)
 						translate([0,-(sedX_pincho[1]+base_dy-un_poco_mas)/2,sedX_pincho[2]/2]) 
 							for (indice = [ 0, 1 ] )
 								cubo(correccion( sedX_pincho + [0, un_poco_mas, 0] ), t=[pincho_x[indice],0,0]);

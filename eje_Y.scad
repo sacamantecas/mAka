@@ -6,10 +6,10 @@
 //
 //
 
-  /* soporte del motor de Y */	translate(fabricar?[-30,25,0]:[mY_soporte_x+mY_soporte_dx/2,0,0]) rotate(fabricar?[0,0,0]:[0,-90,0]) soporte_motor_Y();
+! /* soporte del motor de Y */	translate(fabricar?[-30,25,0]:[mY_soporte_x+mY_soporte_dx/2,0,0]) rotate(fabricar?[0,0,0]:[0,-90,0]) soporte_motor_Y();
   /* 2 patas 	 			*/	mirror([1,0,0]) translate(fabricar?[20,5,pata_dy/2]:[0,15,0]) rotate(fabricar?[-90,0,0]:[0,0,0]) pata();		
   /* las otras 2 patas 		*/	translate(fabricar?[20,5,pata_dy/2]:[0,-15,0]) rotate(fabricar?[-90,0,0]:[0,0,0]) pata();		
-!  /* herrajes de la pata 	*/	if (!fabricar) color([0,0,0, .2]) herrajes_pata();
+  /* herrajes de la pata 	*/	if (!fabricar) color([0,0,0, .2]) herrajes_pata();
   /* portacarro            	*/	portacarro(false);
   /* complemento portacarro	*/	portacarro(true);
 
@@ -25,13 +25,15 @@ $alto_de_capa = .25 ;
 hacer_soportes = fabricar;
 $afeitado = .2 * fabricar ;
 $espesor = .63 ;
-$fa = 5 ;
-$fs = .5 ;
+$fa = .25 ;
+$fs = .25 ;
 mp = .1 ;
 
 use <basico.scad>
 use <soportes.scad>
 use <tangente.scad>
+
+
 gapplasop = soportes($gap_v_soporte);
 gaphsop = soportes($gap_h_soporte);
 

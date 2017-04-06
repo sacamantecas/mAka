@@ -6,7 +6,8 @@
 //
 //
 
-use <utilidades.scad>
+use <basico.scad>
+use <compacto.scad>
 
 $alto_de_capa=.25;
 

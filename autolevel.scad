@@ -21,9 +21,9 @@ fabricar = 0 ;
 $alto_de_capa = .2 ;
 
 
-use <utilidades.scad>
-function ajuste_manual(p) = p;
-function cac(cuanto, exceso=false) = floor((cuanto+(exceso?($alto_de_capa-.0001):0))/$alto_de_capa)*$alto_de_capa;
+use <soportes.scad>
+use <basico.scad>
+
 
 $fs = .5 ;
 $fa = 1 ;
@@ -34,16 +34,16 @@ hacer_soportes = fabricar ;
 afeitado = .25 * fabricar * 0 ;
 
 
-angulo_voladizo = utilidades($angulo_voladizo) ;
-sephsop = .75 ; // utilidades($gap_h_soporte) ;
-gapplasop = utilidades($gap_v_soporte) ;
+angulo_voladizo = soportes($angulo_voladizo) ;
+sephsop = .75 ; // soportes($gap_h_soporte) ;
+gapplasop = soportes($gap_v_soporte) ;
 holgura_rotor = .3 ;
 holgura_lanceta = .2 ;
 
 
 // diámetro de agujeros en horizontal (churrito anular), vertical (capas) y lateral (fin de churrito)
-agujero_clip = [ajuste_manual(1 + .7), 1, ajuste_manual(1 + .2)];
-agujero_M3 = [ ajuste_manual(3 + .5)/2, , ] ;
+agujero_clip = [correccion(1 + .7), 1, correccion(1 + .2)];
+agujero_M3 = [ correccion(3 + .5)/2, , ] ;
 // medidas de X.scad
 rosca_autolevel_altura = [6, 26];
  
@@ -76,7 +76,7 @@ oreja_x = 5.8 ;
 oreja_z = oreja_x ; // 45º hacia la izda en reposo, 45 a dcha en medición
 merma_interior_inferior = 2.5 ; // la parte trasera de la caja lleva este recorte
 cuerpo_yi = -merma_interior_inferior/2 ;
-abertura_lanceta_z = ajuste_manual(rotor_z + oreja_z  -  .2) ;
+abertura_lanceta_z = correccion(rotor_z + oreja_z  -  .2) ;
 
 
 
@@ -120,7 +120,7 @@ module pulopo() { // lanza que tira y empuja la lanza que actúa sobre el rotor
 	// un clip pegado es gancho que agarra el tornillo de la puntera
 	canal_clip_dx = 11 ;
 	canal_clip_dy = 1 ;
-	canal_clip_dz = ajuste_manual( 1 + .3 );
+	canal_clip_dz = correccion( 1 + .3 );
 	canal_clip_z = eje_r - 1.7 ;
 	
 	module pulopo_2D(merma=0) {
@@ -185,7 +185,7 @@ module portapulopo() { // se construye a partir del centro de los dos tornillos 
 	polea_x = -6.75 ; // posicion_eje[0] - vrd_x de X.scad
 	fijacion_r = 4.5 ;
 	fijacion_dz = (rosca_autolevel_altura[1] - rosca_autolevel_altura[0])/2 ;
-	cabeza_tornillo = ajuste_manual( 5.5  +  1) ;
+	cabeza_tornillo = correccion( 5.5  +  1) ;
 	escotadura_dy = 1 ;
 	
 	module portapulopo_2D(merma=0) {
@@ -270,7 +270,7 @@ module lanza(plantilla_montaje = false) {
 	lanza_oreja_cojin_h = $alto_de_capa * 0 ;
 	
 
-	lanza_dy = cac((ancho_cavidad - rotor_dy - 4*holgura_lanceta) / 2) ;
+	lanza_dy = corte_a_capa((ancho_cavidad - rotor_dy - 4*holgura_lanceta) / 2) ;
 	lanza_puntera_dz = 1.5 ; // cuerno de la lanza que facilita colocar la puntera para pegarla
 	alfa = asin((punta_zr-Zo)/lanza_dx); // angulo que se levanta la lanza en posición de reposo
 	beta = asin((punta_zr-punta_diferencial-Zo)/lanza_dx); // angulo que baja la lanza en posición de medición
@@ -334,10 +334,10 @@ module lanza(plantilla_montaje = false) {
 	module puntera() {	
 		difference() {
 			union() {
-				translate([puntera_cunna_dx/2,0, (puntera_dz - cac(puntera_dz - lanza_puntera_dz))/2])
-					cube([puntera_dx+puntera_cunna_dx, puntera_dy, cac(puntera_dz - lanza_puntera_dz)], center=true);
-				translate([puntera_cunna_dx/2,0, (cac(lanza_puntera_dz, true) - puntera_dz)/2])
-					cube([puntera_dx+puntera_cunna_dx, ajuste_manual(puntera_dy - 2*lanza_dy   -  .2), cac(lanza_puntera_dz, true)], center=true);
+				translate([puntera_cunna_dx/2,0, (puntera_dz - corte_a_capa(puntera_dz - lanza_puntera_dz))/2])
+					cube([puntera_dx+puntera_cunna_dx, puntera_dy, corte_a_capa(puntera_dz - lanza_puntera_dz)], center=true);
+				translate([puntera_cunna_dx/2,0, (corte_a_capa(lanza_puntera_dz, true) - puntera_dz)/2])
+					cube([puntera_dx+puntera_cunna_dx, correccion(puntera_dy - 2*lanza_dy   -  .2), corte_a_capa(lanza_puntera_dz, true)], center=true);
 			}
 			translate([0,0,punta_angulo_dz_sobre_puntera+puntera_dz/2]) rotate([0, 180+punta_angulo-puntera_angulo,0]) cylinder(r=puntera_r, h=puntera_dz*2);
 			mucho = 5 ;
@@ -432,7 +432,7 @@ module cuerpo() {
 	cuerpo_dys = 19 ;
 	cuerpo_dyi = 16.5 ;
 	cuerpo_zie = -14.8 ; // z del inicio del estrechamiento (tiene relación con el soporte derecho del eje X)
-	rodamiento_r = ajuste_manual(19 + .3) / 2 ;
+	rodamiento_r = correccion(19 + .3) / 2 ;
 	canto_superior_dy = 1.5 ;
 	canto_superior_brida_dy = 1 ;
 	// datos del hueco para la brida radios interior y exterior, y proporción vertical de ambos
@@ -448,8 +448,8 @@ module cuerpo() {
 	// endstop: coordenadas del centro y dimensiones con la holgura puesta
 	endstop_x = -5.8 ;
 	endstop_z = cuerpo_zi + 19.9 ;
-	endstop_dx = ajuste_manual( 13 + .2 ) ;
-	endstop_dy = ajuste_manual( 6 + .15) ;
+	endstop_dx = correccion( 13 + .2 ) ;
+	endstop_dy = correccion( 6 + .15) ;
 	endstop_dz = 6.5 ;
 	endstop_agujero_r = 2.1 / 2 ;
 	endstop_agujero_ox = 3.17 ; // offset respecto a endstop_x (a cada lado)
@@ -463,10 +463,10 @@ module cuerpo() {
 	rotor_hueco_dch_r = rotor_r + .8 ;
 	espacio_para_orejas_r = 3.5 ; // tanto espacio es más bien por el actuador	
 	// presor
-	presor_hueco_dy = ajuste_manual(8.8+.2  + .3) ;
-	presor_eje_dy = ajuste_manual(14.1 + .3) ;
-	presor_eje_dx = ajuste_manual( 2 + .3 );
-	presor_eje_dz = ajuste_manual( 2 + .4 );
+	presor_hueco_dy = correccion(8.8+.2  + .3) ;
+	presor_eje_dy = correccion(14.1 + .3) ;
+	presor_eje_dx = correccion( 2 + .3 );
+	presor_eje_dz = correccion( 2 + .4 );
 	presor_eje_x = 9 ;
 	presor_eje_z =  cuerpo_zi + 5.4 ;
 	presor_canal_x = 6 ;
@@ -479,7 +479,7 @@ module cuerpo() {
 	sosten_solapa_dz = 1 ;
 	sosten_apoyo_inf_z = abertura_lanceta_z - .8 ;
 	sosten_alojamiento_dx = 1 ; // confío en la rebaba de la 1ª capa para que sostenga el muelle (y si no, se pega algo)
-	sosten_alojamiento_r = ajuste_manual(3/2  +  .2);
+	sosten_alojamiento_r = correccion(3/2  +  .2);
 	sosten_no_alojamiento_r = sosten_alojamiento_r - .4 ;
 	sosten_alojamiento_z = cuerpo_zi + 17.35 ;
 	// agarre para el sosten del muelle del presor
@@ -496,8 +496,8 @@ module cuerpo() {
 	empujador_lanceta_holgura_dx = .6 ;
 	empujador_lanceta_holgura_dy = 1 ;
 	empujador_lanceta_hueco_inf_dy = 8 ;
-	empujador_lanceta_muelle_ext = ajuste_manual( 4.5 + .4 );
-	empujador_lanceta_muelle_int = ajuste_manual( 3 - .4 );
+	empujador_lanceta_muelle_ext = correccion( 4.5 + .4 );
+	empujador_lanceta_muelle_int = correccion( 3 - .4 );
 	empujador_lanceta_muelle_apoyo_dz = 1.3 ;
 	// otras
 	recorte_encaje_motor_dista_pared_dcha = 1.5 ;
@@ -521,7 +521,7 @@ module cuerpo() {
 			// alojamiento para travesaños que sujetan el endstop: entrada grande, y salida ciega igual que el agujero del endstop
 			for ( lado = [-1,1] ) {
 				translate([endstop_x+lado*endstop_agujero_ox, cuerpo_yi+cuerpo_dyi/4+mp, endstop_z+endstop_agujero_oz])
-					cube([endstop_agujero_r*2, cuerpo_dyi/2, cac(endstop_agujero_r*2, true)], center=true);
+					cube([endstop_agujero_r*2, cuerpo_dyi/2, corte_a_capa(endstop_agujero_r*2, true)], center=true);
 				translate([endstop_x+lado*endstop_agujero_ox, cuerpo_yi-cuerpo_dyi/4+(cuerpo_dyi-ancho_cavidad)/2, endstop_z+endstop_agujero_oz])
 					rotate([90,0,0]) {
 						cylinder(r=endstop_agujero_r, h=cuerpo_dyi/2, center=true);
@@ -585,7 +585,7 @@ module cuerpo() {
 					cube([presor_eje_dx, presor_eje_dy, alto+mp], center=true);
 			}
 			// horizontal canal eje
-			{	profundo = ajuste_manual(presor_eje_x - presor_canal_x  +  .2 );
+			{	profundo = correccion(presor_eje_x - presor_canal_x  +  .2 );
 				translate([presor_canal_x + profundo/2, cuerpo_yi, presor_eje_z]) {
 					cube([profundo, presor_eje_dy, presor_eje_dz], center=true);
 					translate([profundo / 2, 0, 0])	
@@ -623,18 +623,18 @@ module cuerpo() {
 			// soporte lado presor
 			{	cubo = [cuerpo_dx/2-presor_canal_x-pared_derecha_dx-sephsop, presor_hueco_dy - sephsop*2, abertura_lanceta_z - cuerpo_zi];
 				translate([cuerpo_dx/2 - pared_derecha_dx - sephsop - cubo[0], cuerpo_yi - cubo[1]/2, cuerpo_zi])
-					soporte_paralelo(ajuste_manual(cubo  -  [.2,0,0]), center=false); // Kisslicer mariconea con ese soporte si el tabique derecho está cerca de lo otro
+					soporte_paralelo(correccion(cubo  -  [.2,0,0]), center=false); // Kisslicer mariconea con ese soporte si el tabique derecho está cerca de lo otro
 			}
 			translate([canal_actuador_xi + sephsop, cuerpo_yi - ancho_cavidad/2 + sephsop, cuerpo_zi])
 				soporte_paralelo([presor_canal_x - canal_actuador_xi - sephsop * 2, ancho_cavidad - 2 * sephsop, techo_cavidad - cuerpo_zi - gapplasop], center=false);
 			translate([presor_canal_x, cuerpo_yi - ancho_cavidad/2 + sephsop, abertura_lanceta_z + gapplasop])
 				soporte_paralelo([cuerpo_dx/2 - presor_canal_x, ancho_cavidad - 2 * sephsop, techo_cavidad - abertura_lanceta_z - gapplasop * 2], center=false);
 			// soportillo del hueco del eje del presor
-			{	sephsop = ajuste_manual(sephsop  +  .2);
+			{	sephsop = correccion(sephsop  +  .2);
 				gapplasop = $alto_de_capa; // la asignación normal de .25 me está fallando :(
 				entra_en_cul_de_sac = .3 ;
 				dxph = presor_eje_x - presor_canal_x + entra_en_cul_de_sac;
-				dyph = (presor_eje_dy - presor_hueco_dy)/2 - ajuste_manual(sephsop - .2);
+				dyph = (presor_eje_dy - presor_hueco_dy)/2 - correccion(sephsop - .2);
 				translate([presor_canal_x, cuerpo_yi - presor_eje_dy/2 + sephsop, cuerpo_zi])
 					cube([$espesor, presor_eje_dy - 2 * sephsop, presor_eje_z - cuerpo_zi]);
 				for (lado = [-1, 1])				
@@ -664,7 +664,7 @@ module cuerpo() {
 			
 	module empujador_lanceta() {
 		dz = 0 - techo_cavidad - rodamiento_r;
-		dzh = ajuste_manual(techo_cavidad - abertura_lanceta_z - lanza_dz  - .25);
+		dzh = correccion(techo_cavidad - abertura_lanceta_z - lanza_dz  - .25);
 		difference() {
 			translate([0,0,dz/2]) 
 				cube([empujador_lanceta_dx, ancho_cavidad - empujador_lanceta_holgura_dy, dz], center=true);
@@ -787,16 +787,16 @@ module rotor() {
 	principal_dz = 14.8 ;
 	oreja_dy = 1 ;
 	oreja_r = agujero_clip[0]/2 + .9 ;
-	canal_dx = ajuste_manual( .85 + .3 );
+	canal_dx = correccion( .85 + .3 );
 	canal_x = -5 ;
-	canal_dy = ajuste_manual( 2.5 + .1 );
+	canal_dy = correccion( 2.5 + .1 );
 	canal_dz = 20 ;
 	
 	presor_eje = [12.17, -1.77] ;
 	presor_brazo = 6 ;
 	presor_angulo_medicion = -17 ;
 	presor_angulo_reposo = -25 ;
-	presor_rueda_r = ajuste_manual(4 + .1);
+	presor_rueda_r = correccion(4 + .1);
 	recorte_para_presor = 2 * ([1.95, 1] + [.5, .5]);
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,7 @@
   /* soporte del motor de Y */	translate(fabricar?[-30,25,0]:[mY_soporte_x+mY_soporte_dx/2,0,0]) rotate(fabricar?[0,0,0]:[0,-90,0]) soporte_motor_Y();
   /* 2 patas 	 			*/	mirror([1,0,0]) translate(fabricar?[20,5,pata_dy/2]:[0,15,0]) rotate(fabricar?[-90,0,0]:[0,0,0]) pata();		
   /* las otras 2 patas 		*/	translate(fabricar?[20,5,pata_dy/2]:[0,-15,0]) rotate(fabricar?[-90,0,0]:[0,0,0]) pata();		
-! /* herrajes de la pata 	*/	if (!fabricar) color([0,0,0, .2]) herrajes_pata();
+!  /* herrajes de la pata 	*/	if (!fabricar) color([0,0,0, .2]) herrajes_pata();
   /* portacarro            	*/	portacarro(false);
   /* complemento portacarro	*/	portacarro(true);
 
@@ -29,10 +29,11 @@ $fa = 5 ;
 $fs = .5 ;
 mp = .1 ;
 
-use <utilidades.scad>
+use <basico.scad>
+use <soportes.scad>
 use <tangente.scad>
-gapplasop = utilidades($gap_v_soporte);
-gaphsop = utilidades($gap_h_soporte);
+gapplasop = soportes($gap_v_soporte);
+gaphsop = soportes($gap_h_soporte);
 
 
 varillas_X_z = [10, 40] ;

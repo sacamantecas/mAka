@@ -28,7 +28,8 @@ hacer_soportes = fabricar ;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-use <utilidades.scad>
+use <basico.scad>
+use <soportes.scad>
 use <MCAD/involute_gears.scad>
 
 ucm = .1 ; // un chorrito más para asegurar uniones. OjO, porque si es grande puede afectar negativamente
@@ -910,7 +911,7 @@ module cuerpo(elemento=cue_ancla) {
 												cylinder(r=a+gapplasop + (hacer_soportes ? 0 : mucho), h=plataforma[1]+ucm, center=true, $fn=fn(a));
 											// acotar el soporte de la parte baja del voladizo izquierdo
 											if (hacer_soportes)
-												translate([-sqrt(1/pow((a*tan(utilidades($angulo_voladizo)))/pow(b,2),2)+1/pow(b,2))-mucho/2, -mucho/2, 0]) 
+												translate([-sqrt(1/pow((a*tan(soportes($angulo_voladizo)))/pow(b,2),2)+1/pow(b,2))-mucho/2, -mucho/2, 0]) 
 													cube(mucho, center=true);
 											}
 										difference() {										

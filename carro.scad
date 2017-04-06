@@ -9,7 +9,7 @@
 //
 
 fabricar = 0 ; // algunas partes se fabrican separadas
-hacer_ventilador = 0 ;
+hacer_ventilador = 1 ;
 hacer_carro = 0 ;
 hacer_handler = 0 ;
 hacer_ventila_fusor = 1 ;
@@ -33,16 +33,19 @@ $fa=1 ;
 $fs=1 ;
 	
 use <extrusor.scad>
-use <utilidades.scad>
+use <basico.scad>
+use <soportes.scad>
+use <compacto.scad>
+
 module fantasma(rgb=[.8,.8,.8]) {color(rgb+[0,0,0,.3]) children();}
 
 
 // coger variables de propósito general en el módulo de utilidades
-voladizo=utilidades($angulo_voladizo);
-gapplasop=utilidades($gap_v_soporte);
-sephsop=utilidades($gap_h_soporte);
-groplasop=utilidades($gro_pla_sop);
-redondeo=utilidades($redondeo);
+voladizo=soportes($angulo_voladizo);
+gapplasop=soportes($gap_v_soporte);
+sephsop=soportes($gap_h_soporte);
+groplasop=soportes($gro_pla_sop);
+redondeo=soportes($redondeo);
 // el módulo de utilidades usará este espesor para los soportes (si no, aplica un defecto)
 churrito_nominal = .5 ; 
 $espesor=correccion(churrito_nominal  +  .09) ; // esto es para cálculos de los soportes, y es un valor experimental para que las paredes de un hilo queden bien
@@ -616,15 +619,15 @@ module zocalos(poner=0) {
 	// trunque del zócalo para evitar el filo
 	// el trunque para afinar se hace desde abajo, así que hay que redondear al alza (con 10% de redondeo para no truncar por centésimas)
 	tz_dx=$espesor * 2 ; 
-	tz_dz = corte_a_capa($alto_de_capa*.9 + rh_radio_corregido*sin(acos(1-tz_dx/rh_radio_corregido)) );
+	tz_dz = corte_a_capa(rh_radio_corregido*sin(acos(1-tz_dx/rh_radio_corregido)), true);
 	// trunques de la brida para evitar el filo 
 	// el cálculo para saber dónde el óvalo de la brida está a tz_dx del rodamiento con el óvalo con un es una ecuación de 2º grado
 	// con esa ecuación calculo la coordenada X, para lo que me interesa la solución de "menos raiz de". A partir de ahí saco la Y
 	// A=((pow(rh_radio_corregido,2)/pow(div/2,2))-1);
 	// B=(-2*tz_dx);
 	// C=(-pow(tz_dx,2)-pow(rh_radio_corregido,4)/pow(div/2,2)+pow(rh_radio_corregido,2));
-	tbi_dz = corte_a_capa($alto_de_capa*.9 + rh_radio_corregido*cos(asin(((-(-2*tz_dx)-sqrt(pow((-2*tz_dx),2)-4*((pow(rh_radio_corregido,2)/pow(div/2,2))-1)*(-pow(tz_dx,2)-pow(rh_radio_corregido,4)/pow(div/2,2)+pow(rh_radio_corregido,2))))/(2*((pow(rh_radio_corregido,2)/pow(div/2,2))-1)))/rh_radio_corregido)) );
-	tbe_dz = corte_a_capa($alto_de_capa*.9 + sqrt(pow(dev/2,2)*(1-pow(rh_radio_corregido-tz_dx,2)/pow(deh/2,2))) );
+	tbi_dz = corte_a_capa(rh_radio_corregido*cos(asin(((-(-2*tz_dx)-sqrt(pow((-2*tz_dx),2)-4*((pow(rh_radio_corregido,2)/pow(div/2,2))-1)*(-pow(tz_dx,2)-pow(rh_radio_corregido,4)/pow(div/2,2)+pow(rh_radio_corregido,2))))/(2*((pow(rh_radio_corregido,2)/pow(div/2,2))-1)))/rh_radio_corregido)), true );
+	tbe_dz = corte_a_capa(sqrt(pow(dev/2,2)*(1-pow(rh_radio_corregido-tz_dx,2)/pow(deh/2,2))), true );
 	zocalo_dz = pp_bajos - tz_dz ;
 	
 	for (lado_Y = [-1, 1])
@@ -1527,7 +1530,7 @@ module portalapiz() {
 						cube([pl_dx - 2* pl_pared_dx, pl_dy-pl_pared_dx, pl_dz - pl_base_dz+mp]);
 					for (lado=[-1, 1]) 
 						translate([pl_dx/2 + lado * (pl_dx - pl_pilar_tornillo_dy)/2, pl_dy - pl_pilar_tornillo_dy/2,0]) {
-							logordo = corte_a_capa(pl_zi + pl_dz - pl_tuerca_z + tuerca_M3_h /2 + $alto_de_capa - .05);
+							logordo = corte_a_capa(pl_zi + pl_dz - pl_tuerca_z + tuerca_M3_h /2, true);
 							translate([0,0,pl_dz - logordo])
 								cylinder(d=pl_pilar_tornillo_dy*2, h=logordo);
 								cylinder(d1=pl_pilar_tornillo_dy, d2=pl_pilar_tornillo_dy*2, h=pl_dz - logordo);
@@ -1535,7 +1538,7 @@ module portalapiz() {
 				}
 				for (lado=[-1, 1]) {
 					translate([pl_dx/2 + lado * (pl_dx - pl_pilar_tornillo_dy)/2, pl_dy - pl_pilar_tornillo_dy/2, 0]) {
-						alto = corte_a_capa(tuerca_M3_h + $alto_de_capa -.05);
+						alto = corte_a_capa(tuerca_M3_h, true);
 						ancho = 2*cos(30)*tuerca_M3_d_h/(2*cos(60)+1) ;
 						translate([0,0,-mp/2])
 							cylinder(d=agj_M3_h, h=pl_dz+mp);

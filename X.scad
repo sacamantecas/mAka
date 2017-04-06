@@ -6,7 +6,7 @@
 //
 //
 
-derecha=1 ;  // lado que queremos (sólo uno cada vez, por no eternizar el proceso)
+derecha=0 ;  // lado que queremos (sólo uno cada vez, por no eternizar el proceso)
 fabricar=0 ; // algunas partes se fabrican separadas
 
 hacer_cursor = 1 ;
@@ -32,17 +32,19 @@ afeitado = .25 * fabricar;
 $fa=1 ;
 $fs=1 ;
 
-use <utilidades.scad>
+use <basico.scad>
+use <compacto.scad>
+use <soportes.scad>
 
 
 signo_lado=[1,-1][derecha];
-// coger variables de propósito general en el módulo de utilidades
-voladizo=utilidades($angulo_voladizo);
-gapplasop=utilidades($gap_v_soporte);
-sephsop=utilidades($gap_h_soporte);
-groplasop=utilidades($gro_pla_sop);
-redondeo=utilidades($redondeo);
-// el módulo de utilidades usará este espesor para los soportes (si no, aplica un defecto)
+// coger variables de propósito general en el módulo de soportes
+voladizo=soportes($angulo_voladizo);
+gapplasop=soportes($gap_v_soporte);
+sephsop=soportes($gap_h_soporte);
+groplasop=soportes($gro_pla_sop);
+redondeo=compacto($redondeo);
+// el módulo de soportes usará este espesor para los soportes (si no, aplica un defecto)
 $espesor=.59 ;
 
 
@@ -898,9 +900,9 @@ module apoyo_tv_izdo(modelo) {
 module cuerpo_derecho() {
 	cubo(c=[cuerpod_dxs,cuerpo_dy,cuerpo_dzs+mp], t=[-cuerpod_dxs/2+cuerpo_Xd,0,cuerpo_dz - cuerpo_dzs/2-mp/2], esquinas=15);
 	cubo(c=[cuerpod_dxi,cuerpo_dy,cuerpo_dzi], t=[-cuerpod_dxi/2+cuerpo_Xd,0,cuerpo_dzi/2], esquinas=15);
-	
+
 	// cachas para situar las varillas horizontales
-	if (completo + hacer_cachas_vh)
+	if (completo + hacer_cachas_vh + 1)	
 		difference() {
 			cubo(c=[cuerpod_dxs-redondeo,vh_hueco+2*vh_diametro,vh_z], t=[-cuerpod_dxs/2+cuerpo_Xd-redondeo/2,0, vh_cacha_z_sup-vh_z/2]);
 			for ( lado = [-1, 1] ) {

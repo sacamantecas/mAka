@@ -8,8 +8,8 @@
 
 
 hacer_cuerpo = 1 ;
-hacer_tapa_inf = 0 ;
-hacer_tapa_sup = 0 ;
+hacer_tapa_inf = 1 ;
+hacer_tapa_sup = 1 ;
 
 fabricar = 0 ; // algunas partes se fabrican separadas
 $alto_de_capa= .334 ;
@@ -21,12 +21,13 @@ $fa=1 ;
 $fs=1 ;
 mp = .1 ;
 
-use <utilidades.scad>
+use <basico.scad>
+use <soportes.scad>
 
-gap_h_soporte = utilidades($gap_h_soporte);
-gap_v_soporte = utilidades($gap_v_soporte);
-angulo_voladizo = utilidades($angulo_voladizo);
-espesor = utilidades($espesor_defecto);
+gap_h_soporte = soportes($gap_h_soporte);
+gap_v_soporte = soportes($gap_v_soporte);
+angulo_voladizo = soportes($angulo_voladizo);
+espesor = soportes($espesor_defecto);
 
 // ventilador
 vnt_dx = correccion(70  +  .2);

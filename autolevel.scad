@@ -2,16 +2,16 @@
 //
 // piezas relacionadas con la sonda de Z para el autolevel
 // It is licensed under the Creative Commons - GNU LGPL 2.1 license.
-// © 2014-2017 by luiso gutierrez (sacamantecas)
+// ¬© 2014-2017 by luiso gutierrez (sacamantecas)
 //
 // puedes seleccionar una de las 5 lineas siguientes anteponiendo un !
 // o seleccionar varias anteponiendo * en las que no quieras
 //
-  /* rotor (2 piezas) */ 						rotor();
-  /* cuerpo */									cuerpo();
-  /* lanza (son 3 piezas) */					afeita(afeitado) lanza();
+  /* rotor (2 piezas) */ 			rotor();
+  /* cuerpo */					cuerpo();
+  /* lanza (son 3 piezas) */			afeita(afeitado) lanza();
   /* mecanismo de sacar y meter la lanceta */	{ pulopo(); portapulopo(); ajuste_pulopo(); }
-  /* plantilla de montaje de la lanceta */ 		if (fabricar) translate([-20,-47,0]) lanza(true);
+  /* plantilla de montaje de la lanceta */ 	if (fabricar) translate([-20,-47,0]) lanza(true);
 
 fabricar = 0 ;
 
@@ -41,7 +41,7 @@ holgura_rotor = .3 ;
 holgura_lanceta = .2 ;
 
 
-// di·metro de agujeros en horizontal (churrito anular), vertical (capas) y lateral (fin de churrito)
+// di√°metro de agujeros en horizontal (churrito anular), vertical (capas) y lateral (fin de churrito)
 agujero_clip = [correccion(1 + .7), 1, correccion(1 + .2)];
 agujero_M3 = [ correccion(3 + .5)/2, , ] ;
 // medidas de X.scad
@@ -70,10 +70,10 @@ pulopo_x = 20 ;
 portapulopo_dy = 3 ;
 
 
-// coordenadas de la oreja respecto al eje del rotor, en posiciÛn de mediciÛn
+// coordenadas de la oreja respecto al eje del rotor, en posici√≥n de medici√≥n
 // x_reposo = -z_medicion; z_reposo = x_medicion
 oreja_x = 5.8 ;
-oreja_z = oreja_x ; // 45∫ hacia la izda en reposo, 45 a dcha en mediciÛn
+oreja_z = oreja_x ; // 45¬∫ hacia la izda en reposo, 45 a dcha en medici√≥n
 merma_interior_inferior = 2.5 ; // la parte trasera de la caja lleva este recorte
 cuerpo_yi = -merma_interior_inferior/2 ;
 abertura_lanceta_z = correccion(rotor_z + oreja_z  -  .2) ;
@@ -102,7 +102,7 @@ module ajuste_pulopo() {
 			preliminar = afeitado ? $alto_de_capa : 0 ;
 			linear_extrude(preliminar) ajuste_pulopo_2D(afeitado);
 			translate([0,0,preliminar])
-				rotate([0,0,(fabricar?0:-47)]) // una rotaciÛn estÈtica para dar la impresiÛn de que el pulopo apoya en la leva
+				rotate([0,0,(fabricar?0:-47)]) // una rotaci√≥n est√©tica para dar la impresi√≥n de que el pulopo apoya en la leva
 					linear_extrude(ap_dy - preliminar) ajuste_pulopo_2D();
 		}
 	}
@@ -110,7 +110,7 @@ module ajuste_pulopo() {
 }
 
 
-module pulopo() { // lanza que tira y empuja la lanza que act˙a sobre el rotor
+module pulopo() { // lanza que tira y empuja la lanza que act√∫a sobre el rotor
 	pulopo_dy = 6.4 ;
 	eje_r = 4 ;
 	rx = -22 ;
@@ -124,7 +124,7 @@ module pulopo() { // lanza que tira y empuja la lanza que act˙a sobre el rotor
 	canal_clip_z = eje_r - 1.7 ;
 	
 	module pulopo_2D(merma=0) {
-		// origen de coordenadas: eje de rotaciÛn del pulopo
+		// origen de coordenadas: eje de rotaci√≥n del pulopo
 		// un anillo es la base para construir la punta del pulopo
 		re = 8 ;
 		ri = 4 ;
@@ -228,7 +228,7 @@ module portapulopo() { // se construye a partir del centro de los dos tornillos 
 					cylinder(d1=cabeza_tornillo, d2=0, h=cabeza_tornillo/2);
 					cube([cabeza_tornillo+mp, agujero_M3[0]*2, cabeza_tornillo+mp], center=true);
 				}
-			// un escote para evitar el roce de la puntera (otra opciÛn es limar la puntera un poco
+			// un escote para evitar el roce de la puntera (otra opci√≥n es limar la puntera un poco
 			translate([-3, 3.5, portapulopo_dy - escotadura_dy]) 
 				resize([10,0,0]) 
 					cylinder(r=3, h=escotadura_dy+mp);
@@ -243,7 +243,7 @@ module portapulopo() { // se construye a partir del centro de los dos tornillos 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function rota_2D(punto, eje, angulo) = // rotar un punto un ·ngulo determinado con respecto a un eje
+function rota_2D(punto, eje, angulo) = // rotar un punto un √°ngulo determinado con respecto a un eje
 	let( H=sqrt(pow(punto[0]-eje[0],2)+pow(punto[1]-eje[1],2))
 	, 	 g = (punto[0]==eje[0]) ? (90*sign(punto[1]-eje[1])) : atan((punto[1]-eje[1])/(punto[0]-eje[0])) 
 	,	 gg = (punto[0]>eje[0]) ? g : (g+180) 
@@ -251,17 +251,17 @@ function rota_2D(punto, eje, angulo) = // rotar un punto un ·ngulo determinado c
 
 	
 module lanza(plantilla_montaje = false) {	
-	// punta: un punto que est· en la vertical del gancho de agarre. me interesa su x y z en reposo, y lo que baja la x en mediciÛn
-	punta_diferencial = 4 ; // cu·nto baja la punta en mediciÛn
+	// punta: un punto que est√° en la vertical del gancho de agarre. me interesa su x y z en reposo, y lo que baja la x en medici√≥n
+	punta_diferencial = 4 ; // cu√°nto baja la punta en medici√≥n
 	punta_angulo = -30 ;
-	punta_angulo_dz_sobre_puntera = 1 ; // altura del eje de rotaciÛn de punta_angulo sobre la superficie de la puntera
+	punta_angulo_dz_sobre_puntera = 1 ; // altura del eje de rotaci√≥n de punta_angulo sobre la superficie de la puntera
 	// coordenadas del eje de la oreja
 	Xr = rotor_x - oreja_z;
 	Xm = rotor_x + oreja_x;
 	Zo = rotor_z + oreja_x;
 	Za = abertura_lanceta_z;
 	
-	// para c·lculos con la lanza tomo las medidas de un segmento que va de la oreja a la vertical de la punta de arrastre
+	// para c√°lculos con la lanza tomo las medidas de un segmento que va de la oreja a la vertical de la punta de arrastre
 	lanza_holgura = .15 ; // holgura por el ancho extra del churrito
 	lanza_oreja_r = 2.9 ;
 	lanza_dx = sqrt(pow(punta_xr-Xr,2)+pow(punta_zr-Zo, 2)) ;
@@ -272,13 +272,13 @@ module lanza(plantilla_montaje = false) {
 
 	lanza_dy = corte_a_capa((ancho_cavidad - rotor_dy - 4*holgura_lanceta) / 2) ;
 	lanza_puntera_dz = 1.5 ; // cuerno de la lanza que facilita colocar la puntera para pegarla
-	alfa = asin((punta_zr-Zo)/lanza_dx); // angulo que se levanta la lanza en posiciÛn de reposo
-	beta = asin((punta_zr-punta_diferencial-Zo)/lanza_dx); // angulo que baja la lanza en posiciÛn de mediciÛn
+	alfa = asin((punta_zr-Zo)/lanza_dx); // angulo que se levanta la lanza en posici√≥n de reposo
+	beta = asin((punta_zr-punta_diferencial-Zo)/lanza_dx); // angulo que baja la lanza en posici√≥n de medici√≥n
 	// puntera	
 	puntera_dx = 6 ;	
 	puntera_cunna_dx = 2 ;
 	puntera_angulo = 0 ; // angulo de la puntera respecto a la horizontal
-	puntera_dy = rotor_dy + 2 * (lanza_dy + holgura_lanceta); // la holgura que queda al pegar la puntera a la conexiÛn es la misma que habr· entre la lanza y el rotor
+	puntera_dy = rotor_dy + 2 * (lanza_dy + holgura_lanceta); // la holgura que queda al pegar la puntera a la conexi√≥n es la misma que habr√° entre la lanza y el rotor
 	puntera_dz = 3 ;
 	puntera_r = agujero_clip[0]/2 ; // agujero para el gancho
 	lanza_conexion_puntera_r = puntera_dz/2 ;
@@ -298,7 +298,7 @@ module lanza(plantilla_montaje = false) {
 			for (lado =  [-1,1]) {
 				translate([dx/2, lado * (rotor_dy/2+lanza_dy/2+holgura_lanceta), dz/2 + suelo])
 					cube([dx+mp, lanza_dy, dz], center=true);
-				// la zona del eje lleva una holgura adicional de $alto_de_capa para facilitar la manipulaciÛn al meter el eje
+				// la zona del eje lleva una holgura adicional de $alto_de_capa para facilitar la manipulaci√≥n al meter el eje
 				translate([eje_x, lado * (rotor_dy/2+lanza_dy/2+holgura_lanceta + lanza_oreja_cojin_h/2 + $alto_de_capa/2), dz/2 + suelo])
 					cube([lanza_oreja_r * 2, lanza_dy + lanza_oreja_cojin_h + $alto_de_capa, dz], center=true);
 				translate([eje_x, 0, eje_z])
@@ -315,7 +315,7 @@ module lanza(plantilla_montaje = false) {
 			translate(fabricar?[lado*21-33,-25,(lado+1)*lanza_dy/2]:[0,lado * (rotor_dy/2 + lanza_dy/2 + holgura_lanceta) + cuerpo_yi + lanza_dy/2, 0])
 				rotate(fabricar?[(lado+1)*90,0,90]:[90,0,0]) {
 					lateral();
-					// poner un plus como cojÌn
+					// poner un plus como coj√≠n
 					translate([Xr,Zo,lado>0?0:lanza_dy]) 
 						difference() {
 							cylinder(r = lanza_oreja_cojin_r, h=lanza_oreja_cojin_h, center=true);
@@ -348,13 +348,13 @@ module lanza(plantilla_montaje = false) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	module lateral() {
-		/* Hay 5 puntos fundamentales que definen la lanza que conecta el rotor con el gancho de accionamiento (siempre en posiciÛn de reposo):
-			OR: oreja del rotor en reposo (de ahÌ para arriba va la lanza, no por abajo porque puede interferir con el borde derecho del cuerpo)
-			AM: punto de apoyo para mediciÛn (quesito con el pico abajo si es cÛncavo)
-			AR: punto de apoyo para reposo (quesito con el arco abajo si es cÛncavo)
-			IP: inicio de la puntera (cÌrculo centrado en IP)
+		/* Hay 5 puntos fundamentales que definen la lanza que conecta el rotor con el gancho de accionamiento (siempre en posici√≥n de reposo):
+			OR: oreja del rotor en reposo (de ah√≠ para arriba va la lanza, no por abajo porque puede interferir con el borde derecho del cuerpo)
+			AM: punto de apoyo para medici√≥n (quesito con el pico abajo si es c√≥ncavo)
+			AR: punto de apoyo para reposo (quesito con el arco abajo si es c√≥ncavo)
+			IP: inicio de la puntera (c√≠rculo centrado en IP)
 			PU: centro de la puntera 
-		Sobre esos 5 puntos se construye la lanceta, teniendo en cuenta que los de apoyo pueden ser cÛncavos o convexos
+		Sobre esos 5 puntos se construye la lanceta, teniendo en cuenta que los de apoyo pueden ser c√≥ncavos o convexos
 		*/
 		
 		OR = [Xr,Zo] ;
@@ -431,11 +431,11 @@ module cuerpo() {
 // origen: x central, y y z centrados en el rodamiento
 	cuerpo_dys = 19 ;
 	cuerpo_dyi = 16.5 ;
-	cuerpo_zie = -14.8 ; // z del inicio del estrechamiento (tiene relaciÛn con el soporte derecho del eje X)
+	cuerpo_zie = -14.8 ; // z del inicio del estrechamiento (tiene relaci√≥n con el soporte derecho del eje X)
 	rodamiento_r = correccion(19 + .3) / 2 ;
 	canto_superior_dy = 1.5 ;
 	canto_superior_brida_dy = 1 ;
-	// datos del hueco para la brida radios interior y exterior, y proporciÛn vertical de ambos
+	// datos del hueco para la brida radios interior y exterior, y proporci√≥n vertical de ambos
 	brida_alto_canal = 2 ;
 	brida_ri = rodamiento_r ;
 	brida_pi = 14 / brida_ri ;
@@ -459,9 +459,9 @@ module cuerpo() {
 	canal_actuador_xi = -10.5 ;
 	pared_derecha_dx = 1.01 ;
 	// relacionado con el rotor
-	rotor_hueco_izd_r = rotor_x + cuerpo_dx/2 - .6 ; // mÌnima a la izquierda: .6
+	rotor_hueco_izd_r = rotor_x + cuerpo_dx/2 - .6 ; // m√≠nima a la izquierda: .6
 	rotor_hueco_dch_r = rotor_r + .8 ;
-	espacio_para_orejas_r = 3.5 ; // tanto espacio es m·s bien por el actuador	
+	espacio_para_orejas_r = 3.5 ; // tanto espacio es m√°s bien por el actuador	
 	// presor
 	presor_hueco_dy = correccion(8.8+.2  + .3) ;
 	presor_eje_dy = correccion(14.1 + .3) ;
@@ -478,7 +478,7 @@ module cuerpo() {
 	sosten_dy = 5 ;
 	sosten_solapa_dz = 1 ;
 	sosten_apoyo_inf_z = abertura_lanceta_z - .8 ;
-	sosten_alojamiento_dx = 1 ; // confÌo en la rebaba de la 1™ capa para que sostenga el muelle (y si no, se pega algo)
+	sosten_alojamiento_dx = 1 ; // conf√≠o en la rebaba de la 1¬™ capa para que sostenga el muelle (y si no, se pega algo)
 	sosten_alojamiento_r = correccion(3/2  +  .2);
 	sosten_no_alojamiento_r = sosten_alojamiento_r - .4 ;
 	sosten_alojamiento_z = cuerpo_zi + 17.35 ;
@@ -518,7 +518,7 @@ module cuerpo() {
 			{	cq = [endstop_dx, endstop_dy, 0 - (endstop_z - endstop_dz/2)];
 				translate([endstop_x-cq[0]/2, cuerpo_yi - cq[1]/2, -cq[2]]) cube(cq);
 			}
-			// alojamiento para travesaÒos que sujetan el endstop: entrada grande, y salida ciega igual que el agujero del endstop
+			// alojamiento para travesa√±os que sujetan el endstop: entrada grande, y salida ciega igual que el agujero del endstop
 			for ( lado = [-1,1] ) {
 				translate([endstop_x+lado*endstop_agujero_ox, cuerpo_yi+cuerpo_dyi/4+mp, endstop_z+endstop_agujero_oz])
 					cube([endstop_agujero_r*2, cuerpo_dyi/2, corte_a_capa(endstop_agujero_r*2, true)], center=true);
@@ -547,7 +547,7 @@ module cuerpo() {
 					translate([presor_canal_x-rotor_x-(rotor_hueco_izd_r+mp)/2,0,0]) cube([rotor_hueco_izd_r+mp, (rotor_hueco_izd_r+mp)*2, ancho_cavidad], center=true);
 				}
 				// hueco para las orejas del actuador
-				translate([-oreja_z, 0, oreja_x]) // [-z,0,x] representa un giro de -90∫ en Y respecto a [x,0,z]
+				translate([-oreja_z, 0, oreja_x]) // [-z,0,x] representa un giro de -90¬∫ en Y respecto a [x,0,z]
 					rotate([90,0,0])					
 						cylinder(r=espacio_para_orejas_r, h=ancho_cavidad, center=true);						
 				// abrir camino para introducir la lanceta ya montada con puntera y rotor
@@ -568,7 +568,7 @@ module cuerpo() {
 			// presor
 			translate([0, cuerpo_yi - presor_hueco_dy/2, cuerpo_zi-mp]) {
 				cube([cuerpo_dx/2 - pared_derecha_dx, presor_hueco_dy, techo_cavidad - cuerpo_zi]);
-				// recorte para que se aloje el rotor bien a˙n cuando baile debido a holguras exageradas 
+				// recorte para que se aloje el rotor bien a√∫n cuando baile debido a holguras exageradas 
 				intersection() { 			
 					dx = cuerpo_dx/2 - pared_derecha_dx - recorte_encaje_motor_dista_pared_dcha;
 					dy = presor_hueco_dy + 2*recorte_encaje_rotor_profundo;
@@ -596,12 +596,12 @@ module cuerpo() {
 			// ventana para colocar el muelle del presor
 			translate([cuerpo_dx/2 - presor_claraboya_pared_dx - presor_claraboya_dx, cuerpo_yi - presor_claraboya_dy/2, techo_cavidad - mp])
 				cube([presor_claraboya_dx, presor_claraboya_dy, 0-techo_cavidad]);
-			// guÌa para el empujador de la lanceta (que no cae por su propio peso)
+			// gu√≠a para el empujador de la lanceta (que no cae por su propio peso)
 			{	dx = empujador_lanceta_dx + empujador_lanceta_holgura_dx;
 				translate([empujador_lanceta_x-dx/2, cuerpo_yi - ancho_cavidad/2, techo_cavidad - mp])
 					cube([dx, ancho_cavidad, 0-techo_cavidad]);
 			}
-			// recorte para evitar dobleces de la brida, con transiciÛn que no requiere soporte
+			// recorte para evitar dobleces de la brida, con transici√≥n que no requiere soporte
 			{	zi = - brida_pi * sqrt(pow(rodamiento_r,2) - pow(  endstop_dy/2+endstop_holgura_meter  + cuerpo_yi, 2));
 				zs = - brida_pi * sqrt(pow(rodamiento_r,2) - pow(-(endstop_dy/2+endstop_holgura_meter) + cuerpo_yi, 2));
 				dz = zs + rodamiento_r * brida_pi ;
@@ -623,7 +623,7 @@ module cuerpo() {
 			// soporte lado presor
 			{	cubo = [cuerpo_dx/2-presor_canal_x-pared_derecha_dx-sephsop, presor_hueco_dy - sephsop*2, abertura_lanceta_z - cuerpo_zi];
 				translate([cuerpo_dx/2 - pared_derecha_dx - sephsop - cubo[0], cuerpo_yi - cubo[1]/2, cuerpo_zi])
-					soporte_paralelo(correccion(cubo  -  [.2,0,0]), center=false); // Kisslicer mariconea con ese soporte si el tabique derecho est· cerca de lo otro
+					soporte_paralelo(correccion(cubo  -  [.2,0,0]), center=false); // Kisslicer mariconea con ese soporte si el tabique derecho est√° cerca de lo otro
 			}
 			translate([canal_actuador_xi + sephsop, cuerpo_yi - ancho_cavidad/2 + sephsop, cuerpo_zi])
 				soporte_paralelo([presor_canal_x - canal_actuador_xi - sephsop * 2, ancho_cavidad - 2 * sephsop, techo_cavidad - cuerpo_zi - gapplasop], center=false);
@@ -631,7 +631,7 @@ module cuerpo() {
 				soporte_paralelo([cuerpo_dx/2 - presor_canal_x, ancho_cavidad - 2 * sephsop, techo_cavidad - abertura_lanceta_z - gapplasop * 2], center=false);
 			// soportillo del hueco del eje del presor
 			{	sephsop = correccion(sephsop  +  .2);
-				gapplasop = $alto_de_capa; // la asignaciÛn normal de .25 me est· fallando :(
+				gapplasop = $alto_de_capa; // la asignaci√≥n normal de .25 me est√° fallando :(
 				entra_en_cul_de_sac = .3 ;
 				dxph = presor_eje_x - presor_canal_x + entra_en_cul_de_sac;
 				dyph = (presor_eje_dy - presor_hueco_dy)/2 - correccion(sephsop - .2);
@@ -736,7 +736,7 @@ module cuerpo() {
 					if (modelo>0)
 						translate([-$alto_de_capa - cuerpo_zi, afeitado])
 							square([$alto_de_capa, cuerpo_dyi - 2 * afeitado]);
-					// transiciÛn de la parte inferior a la superior
+					// transici√≥n de la parte inferior a la superior
 					ancho = (cuerpo_dys-cuerpo_dyi)/tan(angulo_voladizo);
 					largo = sqrt(pow(cuerpo_dys-cuerpo_dyi, 2)+pow(ancho, 2));
 					translate([ancho-cuerpo_zie, cuerpo_dyi])
@@ -783,7 +783,7 @@ module separador_rotor() {
 }
 
 module rotor() {
-	// origen: el eje de rotaciÛn, orientado en posiciÛn de mediciÛn
+	// origen: el eje de rotaci√≥n, orientado en posici√≥n de medici√≥n
 	principal_dz = 14.8 ;
 	oreja_dy = 1 ;
 	oreja_r = agujero_clip[0]/2 + .9 ;
@@ -811,7 +811,7 @@ module rotor() {
 						// oreja inferior
 						translate([0,0,afeitado?$alto_de_capa:0]) 
 							linear_extrude(oreja_dy - $alto_de_capa * (afeitado?1:0)) en_2D(oreja=1);
-						// gap de separaciÛn para el soporte de la oreja superior
+						// gap de separaci√≥n para el soporte de la oreja superior
 						translate([0,0,oreja_dy]) 
 							linear_extrude(gapplasop) en_2D(oreja=0);
 						// soporte de la oreja superior (con el canal)
@@ -821,17 +821,17 @@ module rotor() {
 							translate([canal_x, oreja_z-canal_dz/2, rotor_dy/2])
 								cube([canal_dx, canal_dz + mp, canal_dy], center=true);
 						}
-						// gap de separaciÛn para la oreja superior
+						// gap de separaci√≥n para la oreja superior
 						translate([0,0,rotor_dy-(oreja_dy + gapplasop)]) 
 							linear_extrude(gapplasop) en_2D(oreja=0);
 						// oreja superior
 						translate([0,0,rotor_dy-oreja_dy]) 
 							linear_extrude(oreja_dy) en_2D(oreja=1);	
 					}
-					// recortar m·s por cuestiones pr·cticas que teÛricas (holgura y falta de precisiÛn al montar)
+					// recortar m√°s por cuestiones pr√°cticas que te√≥ricas (holgura y falta de precisi√≥n al montar)
 					for (lado=[0,1]) translate([0,0,lado * rotor_dy]) recorte_de_encaje(lado==0);
 				}				
-				translate([0,0,rotor_dy-.001]) // .001 para forzar la uniÛn de vol˙menes
+				translate([0,0,rotor_dy-.001]) // .001 para forzar la uni√≥n de vol√∫menes
 					separador_rotor();
 					
 				translate(fabricar?[4,-10,0]:[0,0,0]) rotate(fabricar?[0,0,0]:[180,0,0]) separador_rotor(); // no necesita afeitado
@@ -869,7 +869,7 @@ module rotor() {
 					translate([canal_x-rotor_r*2+canal_forro_dx/2-merma, -rotor_r]) square(rotor_r*2);
 					// eje
 					circle(d=agujero_clip[0] + merma);
-					// escote de mediciÛn
+					// escote de medici√≥n
 					translate(presor_eje + presor_brazo * [sin(presor_angulo_medicion), cos(presor_angulo_medicion)])
 						circle(presor_rueda_r + merma);
 					// escote de reposo

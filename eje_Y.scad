@@ -2,12 +2,12 @@
 //
 // piezas correspondientes al eje Y de mAka
 // It is licensed under the Creative Commons - GNU LGPL 2.1 license.
-// © 2014-2017 by luiso gutierrez (sacamantecas)
+// Â© 2014-2017 by luiso gutierrez (sacamantecas)
 //
 //
 
-! /* soporte del motor de Y */	translate(fabricar?[-30,25,0]:[mY_soporte_x+mY_soporte_dx/2,0,0]) rotate(fabricar?[0,0,0]:[0,-90,0]) soporte_motor_Y();
-  /* 2 patas 	 			*/	mirror([1,0,0]) translate(fabricar?[20,5,pata_dy/2]:[0,15,0]) rotate(fabricar?[-90,0,0]:[0,0,0]) pata();		
+! /* soporte del motor de Y	*/	translate(fabricar?[-30,25,0]:[mY_soporte_x+mY_soporte_dx/2,0,0]) rotate(fabricar?[0,0,0]:[0,-90,0]) soporte_motor_Y();
+  /* 2 patas 	 		*/	mirror([1,0,0]) translate(fabricar?[20,5,pata_dy/2]:[0,15,0]) rotate(fabricar?[-90,0,0]:[0,0,0]) pata();		
   /* las otras 2 patas 		*/	translate(fabricar?[20,5,pata_dy/2]:[0,-15,0]) rotate(fabricar?[-90,0,0]:[0,0,0]) pata();		
   /* herrajes de la pata 	*/	if (!fabricar) color([0,0,0, .2]) herrajes_pata();
   /* portacarro            	*/	portacarro(false);
@@ -83,11 +83,11 @@ paso_z = (mmr_z+conn_z)/2 ;
 
 // motor (variables de s'extrusor)
 an17 = 42.3 ; // ancho del NEMA1
-afm = 3.6/2 ; // agujero de fijaci+¦n del motor
-asm = 1 ; // arandela de separaci+¦n del motor
+afm = 3.6/2 ; // agujero de fijaci+Â¦n del motor
+asm = 1 ; // arandela de separaci+Â¦n del motor
 rasm = 8/2 ; // radio de la arandela de separacion del motor
-afme = 6.4/2 ; // apertura para la cabeza del tornillo de fijaci+¦n del motor
-pafme = 1 ; // del agujero del tornillo penetraci+¦n
+afme = 6.4/2 ; // apertura para la cabeza del tornillo de fijaci+Â¦n del motor
+pafme = 1 ; // del agujero del tornillo penetraci+Â¦n
 dam = 15.5 ; // distancia de los agujeros del motor a su eje
 hbm = 12 ; // hueco para la boina del motor
 
@@ -240,7 +240,7 @@ module pata() {
 				cube([mmr_con_dx, mmr_con_dy+mp, mmr_con_dz], center=true);
 		}
 
-		difference() { // le quito un trozo para no dañar el soporte del agujero de la varilla X
+		difference() { // le quito un trozo para no daÃ±ar el soporte del agujero de la varilla X
 			union() {
 				translate([conn_x, (conn_dy-pata_dy)/2, conn_z])
 					cube([conn_dx, conn_dy+mp, conn_dz], center=true);
@@ -346,7 +346,7 @@ module portacarro(complemento) {
 						translate([lado_x*rodamientos_dx/2 - zocalo_dx/2, lado_y*rodamientos_dy/2 - zocalo_dy/2, 0])
 							difference() {
 								cube([zocalo_dx, zocalo_dy, zocalo_dz]);
-								// hacer un recorte al zócalo, porque pega con la pata
+								// hacer un recorte al zÃ³calo, porque pega con la pata
 								translate([zocalo_dx/2, zocalo_dy/2+lado_y*(rodamiento_l+(zocalo_dy-rodamiento_l)/2+mp/2)/2, zocalo_dz/2 + rodamiento_d/2 + zapatilla - (pata_dz-varilla_lisa_z+holgura_con_pata)])
 									cube([zocalo_dx+mp, (zocalo_dy-rodamiento_l)/2+mp, zocalo_dz], center=true);
 							}

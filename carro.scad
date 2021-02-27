@@ -2,21 +2,21 @@
 //
 // carro del eje X de mAka y sus accesorios
 // It is licensed under the Creative Commons - GNU LGPL 2.1 license.
-// © 2014-2017 by luiso gutierrez (sacamantecas)
+// © 2014-2017 by luis gutierrez (sacamantecas)
 //
 //
 // capas de 1/3mm para el portataladro y de .2mm para el resto
 //
 
 fabricar = 0 ; // algunas partes se fabrican separadas
-hacer_ventilador = 1 ;
+hacer_ventilador = 0 ;
 hacer_carro = 0 ;
 hacer_handler = 0 ;
-hacer_ventila_fusor = 1 ;
+hacer_ventila_fusor = 0 ;
 
 hacer_portataladro = 0 ; // incompatible con el resto
 	coger_volcan_hecho = 0 ;
-hacer_suplemento_portalapiz = 0 ; 
+hacer_suplemento_portalapiz = 1 ; 
 
 hacer_anclaje = 0 ;	// anclaje del extrusor (reside en extrusor.scad)
 

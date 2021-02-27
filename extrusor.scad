@@ -2,27 +2,29 @@
 //
 // extrusor para mAka
 // It is licensed under the Creative Commons - GNU LGPL 2.1 license.
-// © 2014-2017 by luiso gutierrez (sacamantecas)
+// © 2014-2017 by luis gutierrez (sacamantecas)
 //
 //
 // todas las piezas se fabrican con capas de .2
 //
 
-hacer_cuerpo = 1 ;
-preparar_rosca_para_detector = 1 ;
-hacer_presor = 1 ;
-hacer_casquillo = 1 ;
+hacer_cuerpo = 0 ;
+preparar_rosca_para_detector = 0 ;
+hacer_presor = 0 ;
+hacer_casquillo = 0 ;
 hacer_pinion = 1 ;	tornillo_fuera = 0 ;
-hacer_catalina = 1 ;
-hacer_anclajes = 1 ;
-hacer_detector = 1 ;
+hacer_catalina = 0 ;
+hacer_anclajes = 0 ;
+hacer_detector = 0 ;
 
 
 
-fabricar = 0 ;
-afeitado = .25 * fabricar ;
+fabricar = 1 ;
+afeitado = .25 * fabricar;
 hacer_soportes = fabricar ;
 
+
+$alto_de_capa=.2;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -346,12 +348,12 @@ module engranaje_grande() {
 
 
 module engranaje_peque(tornillo_fuera = 1) {
-	grueso_tuerca = 2.7 ;
-	ancho_tuerca=5.9 ; // ojo cuidado: la profundidad sale bien siendo de 6.2, y la anchura sale bien con 5.9; habría que deformar
+	grueso_tuerca = 2.5 ;
+	ancho_tuerca=5.7 ; // ojo cuidado: la profundidad sale bien siendo de 6.2, y la anchura sale bien con 5.7; habría que deformar
 	alto_tuerca=6.2 ; // por cuestiones de fabricación, hay que considerar un diámetro vertical mayor ¡!
-	radio_eje = 2.75 ; // ya corregido para imprimir
+	radio_eje = 2.8 ; // ya corregido para imprimir. Con 2.75 hay que embutirlo con sargento, y no hay forma de sacarlo
 	penetracion=.6 ; // es la medida del rebaje del eje
-	alto_cuello = 4.6 ;
+	alto_cuello = 5 ;
 	filete_cortesia=.2 ; // por los descuelgues del cuello sobre los dientes
 	diente_con_tornillo = [0,0,tornillo_fuera ? 27 : 33] ;
 	
@@ -367,19 +369,24 @@ module engranaje_peque(tornillo_fuera = 1) {
 			}
 
 			// hueco para tuerca y tornillo prisionero		 
-			translate([0, grueso_tuerca/2 + radio_eje - penetracion, grosor_engranajes/2 + alto_cuello - 6/2 + .5]) {
-				rotate([90,30,0]) // hueco de la tuerca
-					scale([1,alto_tuerca/ancho_tuerca,1])
-						cylinder(d=ancho_tuerca/cos(30), h=grueso_tuerca, center=true, $fn=6);
+			translate([0, grueso_tuerca/2 + radio_eje - penetracion -.001 /* evitar cara fantasma */, grosor_engranajes/2 + alto_cuello - 6/2 + .5]) {
+				resize([ancho_tuerca, 0, alto_tuerca])			
+					rotate([90,30,0]) // hueco de la tuerca
+						cylinder(d=ancho_tuerca/cos(30), h=grueso_tuerca, center=true, $fn=6);						
 				translate([0,0, ancho_tuerca/2]) // abertura por arriba, para que se puede colocar
 					cube([ancho_tuerca, grueso_tuerca, ancho_tuerca], center=true);
-				translate([0,-1/2, .5]) // evitar picos entre el eje y la cuerca
-					cube([ancho_tuerca-2, grueso_tuerca+1, ancho_tuerca], center=true);
+	// ¡¡AFINADO A OJO!!
+				translate([0,-1/2, .7]) // evitar picos entre el eje y la tuerca 
+					cube([ancho_tuerca-2, grueso_tuerca+1, ancho_tuerca], center=true);					
 				rotate([90,0,0]) // agujero para el prisionero
 					translate([0,0,-5])
 					cylinder(r=1.6, h=10, center=true, $fn=fn(1.6));
 			}
-			cylinder(r=radio_eje, h=40, center=true, $fn=fn(2.7));
+			difference() {
+				cylinder(r=radio_eje, h=40, center=true, $fn=fn(2.7));
+				translate([0, radio_eje * 2 - penetracion,0])
+					cube([radio_eje * 2, radio_eje * 2, 40], center=true);
+			}
 		}
 }
 
